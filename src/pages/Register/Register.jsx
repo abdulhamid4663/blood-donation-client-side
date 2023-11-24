@@ -60,23 +60,23 @@ export function Register() {
         const confirmPass = form.confirmPass.value;
 
         if (password !== confirmPass) {
-            alert("password is not matched")
+            toast.error("Confirm password is not matched")
             return;
         }
 
         if (password.length < 6) {
             // toast.error("password must have at least 6 characters")
-            alert('password must have 6 characters')
+            toast.error('password must have 6 characters')
             return;
         }
         if (!/[A-Z]/.test(password)) {
             // toast.error("password must have at lease one uppercase letter")
-            alert('password must have at least one capital character')
+            toast.error('password must have at least one capital character')
             return;
         }
         if (!/[#?!@$%^&*-]/.test(password)) {
             // toast.error("password must have at least one special character")
-            alert('password have at least one special character')
+            toast.error('password have at least one special character')
             return;
         }
         try {
@@ -96,8 +96,8 @@ export function Register() {
                 status: 'active'
             }
 
-            const { data } = await axiosSecure.post('/users', user);
-            
+            const { data } = await axiosSecure.put(`/users/${email}`, user);
+            console.log(data);
             toast.success('SignUp Successful');
             navigate('/');
 
@@ -109,7 +109,7 @@ export function Register() {
 
     return (
         <div className="flex justify-center items-center min-h-screen">
-            <Card color="transparent" className="w-full" shadow={false}>
+            <Card color="transparent" className="w-full px-6 md:px-4 py-8" shadow={false}>
                 <form onSubmit={handleSubmit} className="mt-8 mb-2 w-full max-w-screen-lg mx-auto ">
                     <Typography variant="h4" color="blue-gray">
                         Register
@@ -118,7 +118,7 @@ export function Register() {
                         Nice to meet you! Enter your details to register.
                     </Typography>
                     <div className="mb-1 flex flex-col gap-6 mt-8">
-                        <div className="flex gap-6">
+                        <div className="flex flex-col md:flex-row gap-6">
                             <div className="w-full">
                                 <Typography variant="h6" color="blue-gray" className="mb-3">
                                     Your Name
@@ -151,7 +151,7 @@ export function Register() {
                                 />
                             </div>
                         </div>
-                        <div className="flex gap-6">
+                        <div className="flex flex-col md:flex-row gap-6">
                             <div className="w-full">
                                 <Typography variant="h6" color="blue-gray" className="mb-3">
                                     Blood Group
@@ -178,7 +178,7 @@ export function Register() {
                                 />
                             </div>
                         </div>
-                        <div className="flex gap-6">
+                        <div className="flex flex-col md:flex-row gap-6">
                             <div className="w-full">
                                 <Typography variant="h6" color="blue-gray" className="mb-3">
                                     Districts
@@ -213,7 +213,7 @@ export function Register() {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex gap-6">
+                        <div className="flex flex-col md:flex-row gap-6">
                             <div className="w-full">
                                 <Typography variant="h6" color="blue-gray" className="mb-3">
                                     Password

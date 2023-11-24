@@ -108,13 +108,15 @@ export function NavBar() {
                     <div className="flex items-center gap-4">
                         <div className="mr-4 hidden lg:block">{navList}</div>
                         <div className="flex items-center gap-x-1">
-                            <Button
-                                variant="outlined"
-                                size="sm"
-                                className="hidden lg:inline-block"
-                            >
-                                <span>Sign in</span>
-                            </Button>
+                            <Link to='/signIn'>
+                                <Button
+                                    variant="outlined"
+                                    size="sm"
+                                    className="hidden lg:inline-block"
+                                >
+                                    <span>Sign in</span>
+                                </Button>
+                            </Link>
                             <Link to='/register'>
                                 <Button
                                     variant="outlined"
@@ -167,10 +169,12 @@ export function NavBar() {
                 <Collapse open={openNav}>
                     {navList}
                     <div className="flex items-center gap-x-1">
-                        <Button fullWidth variant="text" size="sm" className="">
-                            <span>Log In</span>
-                        </Button>
-                        <Link to='/register'>
+                        <Link className="w-full" to='/signIn'>
+                            <Button fullWidth variant="text" size="sm" className="">
+                                <span>Sign In</span>
+                            </Button>
+                        </Link>
+                        <Link className="w-full" to='/register'>
                             <Button
                                 fullWidth
                                 variant="outlined"
