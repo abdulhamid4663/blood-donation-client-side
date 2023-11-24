@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Contact = () => {
     return (
-        <div className="bg-pink-50 py-10 my-32">
+        <div className="bg-[#F9F9F9] py-10 my-32">
             <Typography
                 color="blue-gray"
                 className="text-center lg:mb-10 text-3xl lg:text-5xl font-semibold"

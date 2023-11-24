@@ -22,7 +22,7 @@ const Banner = () => {
                         color="gray"
                         className="max-w-xl"
                     >
-                        <p>Discover the incredible gift that lies within you. By donating blood, you offer hope and healing to those in need. Your veins carry the potential to be a source of life for someone facing a medical crisis. Join us in this meaningful journey of making a difference through the simple act of blood donation</p>
+                        Discover the incredible gift that lies within you. By donating blood, you offer hope and healing to those in need. Your veins carry the potential to be a source of life for someone facing a medical crisis. Join us in this meaningful journey of making a difference through the simple act of blood donation
                     </Typography>
                     <div className="flex gap-3 mt-8">
                         <Button
@@ -58,7 +58,7 @@ const Banner = () => {
                         color="white"
                         className="max-w-xl"
                     >
-                        <p>Discover the incredible gift that lies within you. By donating blood, you offer hope and healing to those in need. Your veins carry the potential to be a source of life for someone facing a medical crisis. Join us in this meaningful journey of making a difference through the simple act of blood donation</p>
+                        Discover the incredible gift that lies within you. By donating blood, you offer hope and healing to those in need. Your veins carry the potential to be a source of life for someone facing a medical crisis. Join us in this meaningful journey of making a difference through the simple act of blood donation
                     </Typography>
                     <div className="flex gap-3 mt-8">
                         <Button

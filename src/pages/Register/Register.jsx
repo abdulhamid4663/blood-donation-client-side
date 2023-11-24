@@ -11,14 +11,19 @@ import useDistricts from "../../hooks/useDistricts";
 import useUpazilas from "../../hooks/useUpazilas";
 import axiosSecure from "../../api/axiosSecure";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { imageUpload } from "../../api/utils";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 export function Register() {
     const [districts] = useDistricts();
     const [upazilas] = useUpazilas();
+    const { createUser, updateUserProfile } = useAuth();
     const [selectedDistrict, setSelectedDistrict] = useState([])
     const [enteredPassword, setEnteredPassword] = useState('')
     const [confirmPasswordText, setConfirmPasswordText] = useState('')
+    const navigate = useNavigate();
 
     const handleDistrictChange = async e => {
         const { data } = await axiosSecure.get(`/upazilas/${e.target.value}`)
@@ -30,7 +35,7 @@ export function Register() {
     }
 
     const handleOnChangePassword = e => {
-        if(e.target.value === '') {
+        if (e.target.value === '') {
             setConfirmPasswordText('')
             return
         }
@@ -54,37 +59,52 @@ export function Register() {
         const password = form.password.value;
         const confirmPass = form.confirmPass.value;
 
-        if(password !== confirmPass) {
+        if (password !== confirmPass) {
             alert("password is not matched")
             return;
         }
 
-        if(password.length < 6) {
+        if (password.length < 6) {
             // toast.error("password must have at least 6 characters")
             alert('password must have 6 characters')
             return;
         }
-        if(!/[A-Z]/.test(password)) {
+        if (!/[A-Z]/.test(password)) {
             // toast.error("password must have at lease one uppercase letter")
             alert('password must have at least one capital character')
             return;
         }
-        if(!/[#?!@$%^&*-]/.test(password)) {
+        if (!/[#?!@$%^&*-]/.test(password)) {
             // toast.error("password must have at least one special character")
             alert('password have at least one special character')
             return;
         }
+        try {
+            const imageData = await imageUpload(imageFile);
+            // eslint-disable-next-line no-unused-vars
+            const res = await createUser(email, password)
+            await updateUserProfile(name, imageData?.data?.display_url)
 
-        const user = {
-            name, 
-            email, 
-            bloodType, 
-            district, 
-            upazila, 
-            password, 
-            role: 'donor',
-            status: 'active'
+            const user = {
+                name,
+                email,
+                bloodType,
+                district,
+                image: imageData?.data?.display_url,
+                upazila,
+                role: 'donor',
+                status: 'active'
+            }
+
+            const { data } = await axiosSecure.post('/users', user);
+            
+            toast.success('SignUp Successful');
+            navigate('/');
+
+        } catch (error) {
+            toast.error(error.message)
         }
+
     }
 
     return (
@@ -228,13 +248,13 @@ export function Register() {
                                     required
                                 />
                                 {
-                                    confirmPasswordText ? 
-                                    <Typography
-                                        variant="small"
-                                        color="red"
-                                    >
-                                        {confirmPasswordText}
-                                    </Typography> : ''
+                                    confirmPasswordText ?
+                                        <Typography
+                                            variant="small"
+                                            color="red"
+                                        >
+                                            {confirmPasswordText}
+                                        </Typography> : ''
                                 }
                             </div>
                         </div>
@@ -262,9 +282,9 @@ export function Register() {
                     </Button>
                     <Typography color="gray" className="mt-4 text-center font-normal">
                         Already have an account?{" "}
-                        <a href="#" className="font-medium text-gray-900">
+                        <Link to='/signIn' className="font-medium text-gray-900">
                             Sign In
-                        </a>
+                        </Link>
                     </Typography>
                 </form>
             </Card>
