@@ -7,7 +7,7 @@ import {
     IconButton,
     Collapse,
 } from "@material-tailwind/react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export function NavBar() {
     const [openNav, setOpenNav] = React.useState(false);
@@ -29,13 +29,13 @@ export function NavBar() {
                 <NavLink
                     to='/'
                     className={({ isActive }) =>
-                      isActive
-                        ? "text-[#FD2C2D]"
-                        : "text-black hover:text-[#FD2C2D] transition-all duration-200 ease-in-out"
+                        isActive
+                            ? "text-[#FD2C2D]"
+                            : "text-black hover:text-[#FD2C2D] transition-all duration-200 ease-in-out"
                     }
-                  >
+                >
                     Home
-                  </NavLink>
+                </NavLink>
             </Typography>
             <Typography
                 as="li"
@@ -45,13 +45,13 @@ export function NavBar() {
                 <NavLink
                     to='/donation-requests'
                     className={({ isActive }) =>
-                      isActive
-                        ? "text-[#FD2C2D]"
-                        : "text-black hover:text-[#FD2C2D] transition-all duration-200 ease-in-out"
+                        isActive
+                            ? "text-[#FD2C2D]"
+                            : "text-black hover:text-[#FD2C2D] transition-all duration-200 ease-in-out"
                     }
-                  >
+                >
                     Donation Requests
-                  </NavLink>
+                </NavLink>
             </Typography>
             <Typography
                 as="li"
@@ -62,13 +62,13 @@ export function NavBar() {
                 <NavLink
                     to='/account'
                     className={({ isActive }) =>
-                      isActive
-                        ? "text-[#FD2C2D]"
-                        : "text-black hover:text-[#FD2C2D] transition-all duration-200 ease-in-out"
+                        isActive
+                            ? "text-[#FD2C2D]"
+                            : "text-black hover:text-[#FD2C2D] transition-all duration-200 ease-in-out"
                     }
-                  >
+                >
                     Blog
-                  </NavLink>
+                </NavLink>
             </Typography>
             <Typography
                 as="li"
@@ -79,13 +79,13 @@ export function NavBar() {
                 <NavLink
                     to='/blocks'
                     className={({ isActive }) =>
-                      isActive
-                        ? "text-[#FD2C2D]"
-                        : "text-black hover:text-[#FD2C2D] transition-all duration-200 ease-in-out"
+                        isActive
+                            ? "text-[#FD2C2D]"
+                            : "text-black hover:text-[#FD2C2D] transition-all duration-200 ease-in-out"
                     }
-                  >
+                >
                     Contact Us
-                  </NavLink>
+                </NavLink>
             </Typography>
         </ul>
     );
@@ -95,7 +95,7 @@ export function NavBar() {
             <Navbar className=" h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
                 <div className="flex items-center justify-between text-blue-gray-900 max-w-7xl mx-auto">
                     <div className="flex items-center gap-2">
-                        <img src={logo} alt="" className="w-8"/>
+                        <img src={logo} alt="" className="w-8" />
                         <Typography
                             as="a"
                             href="#"
@@ -115,13 +115,15 @@ export function NavBar() {
                             >
                                 <span>Sign in</span>
                             </Button>
-                            <Button
-                                variant="outlined"
-                                size="sm"
-                                className="hidden border-[#FD2C2D] text-white bg-[#FD2C2D] lg:inline-block"
-                            >
-                                <span>Register</span>
-                            </Button>
+                            <Link to='/register'>
+                                <Button
+                                    variant="outlined"
+                                    size="sm"
+                                    className="hidden border-[#FD2C2D] text-white bg-[#FD2C2D] lg:inline-block"
+                                >
+                                    <span>Register</span>
+                                </Button>
+                            </Link>
                         </div>
                         <IconButton
                             variant="text"
@@ -168,9 +170,16 @@ export function NavBar() {
                         <Button fullWidth variant="text" size="sm" className="">
                             <span>Log In</span>
                         </Button>
-                        <Button fullWidth variant="gradient" size="sm" className="">
-                            <span>Sign in</span>
-                        </Button>
+                        <Link to='/register'>
+                            <Button
+                                fullWidth
+                                variant="outlined"
+                                size="sm"
+                                className=" border-[#FD2C2D] text-white bg-[#FD2C2D]"
+                            >
+                                <span>Register</span>
+                            </Button>
+                        </Link>
                     </div>
                 </Collapse>
             </Navbar>
