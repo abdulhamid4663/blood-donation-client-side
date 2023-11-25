@@ -1,9 +1,10 @@
 import { Typography } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 import { Button } from "@material-tailwind/react";
+import { Link } from 'react-router-dom';
 
 const TableData = ({ donation, index }) => {
-    const { recipient, district, upazila, date, time, status } = donation;
+    const { _id, recipient, district, upazila, date, time, status } = donation;
 
     return (
         <tr key={donation._id} className='bg-gray-50 '>
@@ -70,9 +71,11 @@ const TableData = ({ donation, index }) => {
                     {status}
                 </Typography>
             </td>
-            {
-                status === "inProgress" ?
-                    <td className='flex items-center gap-4 py-2'>
+            <td className='flex items-center gap-2 py-2 pl-4'>
+                {
+                    status === "inProgress"
+                    &&
+                    <>
                         <Button
                             color='green'
                             className='py-1 px-2'
@@ -85,12 +88,24 @@ const TableData = ({ donation, index }) => {
                         >
                             Cancel
                         </Button>
-                    </td>
-                    :
-                    <td className='flex items-center gap-4 py-2'>
-                        
-                    </td>     
-            }
+                    </>
+                }
+                <Link to={`/dashboard/updateRequest/${_id}`}>
+                    <Button
+                        color='light-green'
+                        className='py-1 px-2'
+
+                    >
+                        Update
+                    </Button>
+                </Link>
+                <Button
+                    color='red'
+                    className='py-1 px-2'
+                >
+                    Delete
+                </Button>
+            </td>
         </tr>
     );
 };

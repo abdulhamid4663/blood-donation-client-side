@@ -12,6 +12,7 @@ import ContentManagement from "../pages/Dashboard/Admin/ContentManagement/Conten
 import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
 import Profile from "../pages/Dashboard/Common/Profile";
 import MyDonationRequests from "../pages/Dashboard/Common/MyDonationRequests";
+import UpdateRequest from "../pages/Dashboard/UpdateRequest/UpdateRequest";
 
 const router = createBrowserRouter([
     {
@@ -68,7 +69,11 @@ const router = createBrowserRouter([
                 path: 'profile',
                 element: <Profile />
             },
-
+            {
+                path: 'updateRequest/:id',
+                element: <UpdateRequest />,
+                loader: ({params}) => fetch(`http://localhost:5000/request/${params.id}`)
+            },
         ]
     },
 ])
