@@ -11,8 +11,8 @@ const DashboardLayout = () => {
     const closeDrawer = () => setOpen(false);
 
     return (
-        <div>
-            <div className="max-w-fit">
+        <div className="flex flex-col lg:flex-row">
+            <div className="">
                 <div className="block lg:hidden">
                     <React.Fragment>
                         <div className="flex justify-between items-center px-4">
@@ -55,7 +55,7 @@ const DashboardLayout = () => {
                                 </IconButton>
                             </div>
                         </div>
-                        <Drawer open={open} onClose={closeDrawer} className="p-4">
+                        <Drawer open={open} onClose={closeDrawer} className="">
                             <Sidebar />
                         </Drawer>
                     </React.Fragment>
@@ -64,7 +64,7 @@ const DashboardLayout = () => {
                     <Sidebar />
                 </div>
             </div>
-            <div>
+            <div className="w-full bg-gray-50">
                 <Outlet />
             </div>
         </div>
