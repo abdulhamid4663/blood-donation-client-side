@@ -6,11 +6,20 @@ import {
     Button,
     IconButton,
     Collapse,
+    MenuItem,
+    MenuList,
+    Avatar,
+    MenuHandler,
+    Menu,
 } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import useAuth from "../../../hooks/useAuth";
 
 export function NavBar() {
+    const { user, userLogout } = useAuth();
     const [openNav, setOpenNav] = React.useState(false);
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     React.useEffect(() => {
         window.addEventListener(
@@ -107,26 +116,30 @@ export function NavBar() {
                     </div>
                     <div className="flex items-center gap-4">
                         <div className="mr-4 hidden lg:block">{navList}</div>
-                        <div className="flex items-center gap-x-1">
-                            <Link to='/signIn'>
-                                <Button
-                                    variant="outlined"
-                                    size="sm"
-                                    className="hidden lg:inline-block"
-                                >
-                                    <span>Sign in</span>
-                                </Button>
-                            </Link>
-                            <Link to='/register'>
-                                <Button
-                                    variant="outlined"
-                                    size="sm"
-                                    className="hidden border-[#FD2C2D] text-white bg-[#FD2C2D] lg:inline-block"
-                                >
-                                    <span>Register</span>
-                                </Button>
-                            </Link>
-                        </div>
+                        {
+                            user ? ""
+                                :
+                                <div className="flex items-center gap-x-1">
+                                    <Link to='/signIn'>
+                                        <Button
+                                            variant="outlined"
+                                            size="sm"
+                                            className="hidden lg:inline-block"
+                                        >
+                                            <span>Sign in</span>
+                                        </Button>
+                                    </Link>
+                                    <Link to='/register'>
+                                        <Button
+                                            variant="outlined"
+                                            size="sm"
+                                            className="hidden border-[#FD2C2D] text-white bg-[#FD2C2D] lg:inline-block"
+                                        >
+                                            <span>Register</span>
+                                        </Button>
+                                    </Link>
+                                </div>
+                        }
                         <IconButton
                             variant="text"
                             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -164,6 +177,85 @@ export function NavBar() {
                                 </svg>
                             )}
                         </IconButton>
+                        {
+                            user &&
+                            <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
+                                <MenuHandler>
+                                    <Button
+                                        variant="text"
+                                        color="blue-gray"
+                                        className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 "
+                                    >
+                                        <Avatar
+                                            variant="circular"
+                                            size="sm"
+                                            alt="tania andrew"
+                                            className="border border-gray-900 p-0.5"
+                                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                                        />
+                                        <ChevronDownIcon
+                                            strokeWidth={2.5}
+                                            className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
+                                                }`}
+                                        />
+                                    </Button>
+                                </MenuHandler>
+                                <MenuList className="p-1">
+                                    <Link to='/dashboard'>
+                                        <MenuItem
+                                            className={`flex items-center gap-2 rounded hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10`}
+                                        >
+                                            <div className="flex items-center gap-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                                                </svg>
+                                                <Typography
+                                                    as="span"
+                                                    variant="small"
+                                                    className="font-normal"
+                                                >
+                                                    Dashboard
+                                                </Typography>
+                                            </div>
+                                        </MenuItem>
+                                    </Link>
+                                    <MenuItem
+                                        className={`flex items-center gap-2 rounded hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10`}
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            </svg>
+                                            <Typography
+                                                as="span"
+                                                variant="small"
+                                                className="font-normal"
+                                            >
+                                                Profile
+                                            </Typography>
+                                        </div>
+                                    </MenuItem>
+                                    <MenuItem
+                                        className={`flex items-center gap-2 rounded hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10`}
+                                        onClick={userLogout}
+                                    >
+                                        <div className="flex items-center gap-2 text-red-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5.636 5.636a9 9 0 1012.728 0M12 3v9" />
+                                            </svg>
+
+                                            <Typography
+                                                as="span"
+                                                variant="small"
+                                                className="font-normal text-red-300"
+                                            >
+                                                Sign Out
+                                            </Typography>
+                                        </div>
+                                    </MenuItem>
+                                </MenuList>
+                            </Menu>
+                        }
                     </div>
                 </div>
                 <Collapse open={openNav}>
