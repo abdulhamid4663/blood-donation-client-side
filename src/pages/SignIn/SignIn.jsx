@@ -6,13 +6,15 @@ import {
 } from "@material-tailwind/react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import useAuth from "../../hooks/useAuth";
 
 function SignIn() {
     const { loginUser } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/'
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -33,7 +35,7 @@ function SignIn() {
         try {
             await loginUser(email, password);
             toast.success('Sign In Successful');
-            navigate('/');
+            navigate(from, { replace: true });
 
         } catch (error) {
             toast.error(error.message);

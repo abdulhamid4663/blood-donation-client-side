@@ -53,6 +53,7 @@ export function Register() {
         const name = form.name.value;
         const email = form.email.value;
         const bloodType = form.bloodType.textContent;
+        const role = form.role.textContent;
         const imageFile = form.image.files[0];
         const district = form.district.value;
         const upazila = form.upazila.value;
@@ -92,7 +93,7 @@ export function Register() {
                 district,
                 image: imageData?.data?.display_url,
                 upazila,
-                role: 'donor',
+                role,
                 status: 'active'
             }
 
@@ -165,6 +166,15 @@ export function Register() {
                                     <Option value="ab-">AB-</Option>
                                     <Option value="o+">O+</Option>
                                     <Option value="o-">O-</Option>
+                                </Select>
+                            </div>
+                            <div className="w-full">
+                                <Typography variant="h6" color="blue-gray" className="mb-3">
+                                    Role
+                                </Typography>
+                                <Select name="role" size="md" label="Select Your Role" required>
+                                    <Option value="volunteer">Volunteer</Option>
+                                    <Option value="donor">Donor</Option>
                                 </Select>
                             </div>
                             <div className="w-full">
