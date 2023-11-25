@@ -10,6 +10,8 @@ import CreateDonationRequest from "../pages/Dashboard/Common/CreateDonationReque
 import AllDonationRequests from "../pages/Dashboard/Common/AllDonationRequests";
 import ContentManagement from "../pages/Dashboard/Admin/ContentManagement/ContentManagement";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
+import Profile from "../pages/Dashboard/Common/Profile";
+import MyDonationRequests from "../pages/Dashboard/Common/MyDonationRequests";
 
 const router = createBrowserRouter([
     {
@@ -40,7 +42,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'my-donation-requests',
-                element: <div>my donation requests</div>
+                element: <MyDonationRequests />
             },
             {
                 path: 'create-donation-request',
@@ -61,6 +63,10 @@ const router = createBrowserRouter([
             {
                 path: 'users',
                 element: <AllUsers />
+            },
+            {
+                path: 'profile',
+                element: <Profile />
             },
 
         ]

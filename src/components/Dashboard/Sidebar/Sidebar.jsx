@@ -20,7 +20,7 @@ import VolunteerMenus from "../Volunteer/VolunteerMenus";
 function Sidebar() {
     const { role } = useRole();
     const { userLogout } = useAuth();
-
+    
     return (
         <Card className="h-screen w-full max-w-[20rem] p-4 shadow-xl bg-red-50 shadow-blue-gray-900/5">
             <div className="mb-2 p-4 max-w-fit">
@@ -47,12 +47,14 @@ function Sidebar() {
                 {
                     role === "volunteer" && <VolunteerMenus />
                 }
-                <ListItem>
-                    <ListItemPrefix>
-                        <UserCircleIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Profile
-                </ListItem>
+                <Link to='/dashboard/profile'>
+                    <ListItem>
+                        <ListItemPrefix>
+                            <UserCircleIcon className="h-5 w-5" />
+                        </ListItemPrefix>
+                        Profile
+                    </ListItem>
+                </Link>
                 <ListItem
                     onClick={userLogout}
                 >

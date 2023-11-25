@@ -173,8 +173,8 @@ export function Register() {
                                     Role
                                 </Typography>
                                 <Select name="role" size="md" label="Select Your Role" required>
-                                    <Option value="volunteer">Volunteer</Option>
-                                    <Option value="donor">Donor</Option>
+                                    <Option value="volunteer">volunteer</Option>
+                                    <Option value="donor">donor</Option>
                                 </Select>
                             </div>
                             <div className="w-full">
