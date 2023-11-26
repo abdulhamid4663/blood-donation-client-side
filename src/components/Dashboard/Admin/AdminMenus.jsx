@@ -1,10 +1,15 @@
 import { ListItem, ListItemPrefix } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const AdminMenus = () => {
     return (
         <>
-            <Link to='/dashboard/all-donation-requests'>
+            <NavLink to='/dashboard/all-donation-requests'
+                className={({ isActive }) =>
+                    isActive
+                        ? "bg-gray-100 active:bg-gray-100 focus:bg-gray-100"
+                        : ""
+                }>
                 <ListItem>
                     <ListItemPrefix>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -13,7 +18,7 @@ const AdminMenus = () => {
                     </ListItemPrefix>
                     All Donation Requests
                 </ListItem>
-            </Link>
+            </NavLink>
             <Link to='/dashboard/users'>
                 <ListItem>
                     <ListItemPrefix>
