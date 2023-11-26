@@ -64,7 +64,7 @@ const DashboardLayout = () => {
                     <Sidebar />
                 </div>
             </div>
-            <div className="w-full bg-gray-50">
+            <div className="w-full overflow-hidden bg-gray-50">
                 <Outlet />
             </div>
         </div>

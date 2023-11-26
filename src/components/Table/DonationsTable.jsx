@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from "@material-tailwind/react";
 import { Link } from 'react-router-dom';
 
-const TableData = ({ donation, index }) => {
+const DonationsTable = ({ donation, index }) => {
     const { _id, recipient, district, upazila, date, time, status } = donation;
 
     return (
@@ -110,9 +110,9 @@ const TableData = ({ donation, index }) => {
     );
 };
 
-TableData.propTypes = {
+DonationsTable.propTypes = {
     donation: PropTypes.object,
     index: PropTypes.number,
 }
 
-export default TableData;
+export default DonationsTable;

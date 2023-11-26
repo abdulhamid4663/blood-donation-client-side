@@ -1,4 +1,4 @@
-import TableData from "../../../components/Table/TableData";
+import DonationsTable from "../../../components/Table/DonationsTable";
 import useRequests from "../../../hooks/useRequests";
 
 import {
@@ -41,7 +41,7 @@ const MyDonationRequests = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {requests?.map((request, index) => <TableData key={request._id} donation={request} index={index} /> )}
+                            {requests?.map((request, index) => <DonationsTable key={request._id} donation={request} index={index} /> )}
                         </tbody>
                     </table>
                 </Card>
