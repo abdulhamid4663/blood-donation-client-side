@@ -13,6 +13,7 @@ import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
 import Profile from "../pages/Dashboard/Common/Profile";
 import MyDonationRequests from "../pages/Dashboard/Common/MyDonationRequests";
 import UpdateRequest from "../pages/Dashboard/UpdateRequest/UpdateRequest";
+import AddBlog from "../pages/Dashboard/Admin/ContentManagement/AddBlog/AddBlog";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: 'content-management',
                 element: <ContentManagement />
+            },
+            {
+                path: 'content-management/add-blog',
+                element: <AddBlog />
             },
             {
                 path: 'create-donation-request',

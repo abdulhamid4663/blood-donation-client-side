@@ -33,13 +33,10 @@ const AllUsersTable = ({ user, index, refetch }) => {
 
     const handleRoleChange = async (e) => {
 
-        // if(e.target.value === 'admin') {
-            
-        // }
-
         const updatedRole = {
             role: e.target.value
         }
+
         try {
             const { data } = await axiosSecure.patch(`/changeRole/${_id}`, updatedRole)
             if (data?.modifiedCount > 0 || data?.matchedCount > 0) {
