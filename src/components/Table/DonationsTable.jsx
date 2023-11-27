@@ -34,6 +34,34 @@ const DonationsTable = ({ donation, index, refetch }) => {
         });
     };
 
+    const handleStatusChange = async (value) => {
+        const requestDoc = {
+            name: donation?.name,
+            email: donation?.email,
+            recipient: donation?.recipient,
+            district: donation?.district,
+            upazila: donation?.upazila,
+            hospital: donation?.hospital,
+            address: donation?.address,
+            bloodType: donation?.bloodType,
+            date: donation?.date,
+            time: donation?.time,
+            message: donation?.message,
+            status: value
+        }
+
+        try {
+            const { data } = await axiosSecure.patch(`/requestStatusChange/${_id}`, requestDoc)
+            if (data?.modifiedCount > 0) {
+                toast.success('Thank you for Donating');
+                refetch();
+            }
+
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
     return (
         <tr key={donation._id} className='bg-gray-50 '>
             <td>
@@ -99,7 +127,7 @@ const DonationsTable = ({ donation, index, refetch }) => {
                     {status}
                 </Typography>
             </td>
-            <td className='flex items-center gap-2 py-2 pl-4'>
+            <td className='flex items-center gap-2 py-4 pl-4'>
                 {
                     status === "done" || status === "canceled" ? ""
                         :
@@ -111,12 +139,14 @@ const DonationsTable = ({ donation, index, refetch }) => {
                                     <Button
                                         color='green'
                                         className='py-1 px-2'
+                                        onClick={() => handleStatusChange('done')}
                                     >
                                         Done
                                     </Button>
                                     <Button
                                         color='orange'
                                         className='py-1 px-2'
+                                        onClick={() => handleStatusChange('canceled')}
                                     >
                                         Cancel
                                     </Button>

@@ -1,23 +1,20 @@
-import DonationsTable from "../../../components/Table/DonationsTable";
+import { Button, Card, Typography } from "@material-tailwind/react";
 import useRequests from "../../../hooks/useRequests";
-
-import {
-    Card,
-    Typography,
-} from "@material-tailwind/react";
+import DonationsTable from "../../Table/DonationsTable";
+import { Link } from "react-router-dom";
 
 const TABLE_HEAD = ["#", "Recipient", "District", "Upazila", "Date", "Time", "Status", "Action"];
-
-const MyDonationRequests = () => {
+const DonorHome = () => {
     const [requests, refetch] = useRequests();
 
     return (
         <div className="py-12 px-4 lg:px-6 xl:px-12">
             <Typography
                 variant="lead"
+                color="blue-gray"
                 className="text-center text-2xl lg:text-4xl font-medium mb-7"
             >
-                My Donation Requests
+                My Recent Donation Requests
             </Typography>
             <div className="flex overflow-auto items-center justify-center">
                 <Card className="h-full w-full">
@@ -41,13 +38,22 @@ const MyDonationRequests = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {requests?.map((request, index) => <DonationsTable key={request._id} donation={request} index={index} refetch={refetch} /> )}
+                            {
+                                requests?.slice()?.reverse()?.slice(0, 3)?.map((request, index) => <DonationsTable key={request._id} donation={request} index={index} refetch={refetch} />)
+                            }
                         </tbody>
                     </table>
                 </Card>
             </div>
+            <div className="text-center mt-6 mb-10">
+                <Link to='/dashboard/my-donation-requests'>
+                    <Button>
+                        view my all requests
+                    </Button>
+                </Link>
+            </div>
         </div>
     );
-}
+};
 
-export default MyDonationRequests;
+export default DonorHome;

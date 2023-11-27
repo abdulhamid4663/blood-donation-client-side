@@ -1,12 +1,19 @@
-import { Button, Card, CardBody, CardFooter, Typography } from "@material-tailwind/react";
+import { Button, Card, CardBody, CardFooter, Dialog, DialogBody, DialogFooter, DialogHeader, Input, Typography } from "@material-tailwind/react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import axiosSecure from "../../api/axiosSecure";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 
 
 const DonationRequestsDetails = () => {
+    const { user } = useAuth();
     const request = useLoaderData();
     const navigate = useNavigate();
+    const [size, setSize] = useState(null);
+    
+
+    const handleOpen = (value) => setSize(value);
 
     const handleDonate = async () => {
 
@@ -25,10 +32,10 @@ const DonationRequestsDetails = () => {
             status: "inprogress"
         }
         try {
-            const { data } = await axiosSecure.patch(`/requestToInprogress/${request?._id}`, requestDoc)
+            const { data } = await axiosSecure.patch(`/requestStatusChange/${request?._id}`, requestDoc)
             if (data?.modifiedCount > 0) {
                 toast.success('Thank you for Donating');
-                navigate('/donation-requests', {replace: true});
+                navigate('/donation-requests', { replace: true });
             }
 
         } catch (error) {
@@ -69,9 +76,56 @@ const DonationRequestsDetails = () => {
                     </Typography>
                 </CardBody>
                 <CardFooter className="pt-0">
-                    <Button onClick={handleDonate} color="red" className="w-full">Donate</Button>
+                    <Button disabled={request?.email === user?.email} onClick={() => handleOpen("sm")} variant="gradient" color="red" className="w-full">
+                        Donate
+                    </Button>
                 </CardFooter>
             </Card>
+            <Dialog
+                open={
+                    size === "xs" ||
+                    size === "sm" ||
+                    size === "md" ||
+                    size === "lg" ||
+                    size === "xl" ||
+                    size === "xxl"
+                }
+                size={size || "md"}
+                handler={handleOpen}
+            >
+                <DialogHeader>Confirm the donation.</DialogHeader>
+                <DialogBody className="lg:flex gap-6">
+                    <div className="w-full">
+                        <Typography variant="small" color="blue-gray">
+                            Name:
+                        </Typography>
+                        <Input label="Name" disabled variant="outlined" defaultValue={user?.displayName} className="w-full" />
+                    </div>
+                    <div className="w-full">
+                        <Typography variant="small" color="blue-gray">
+                            Email:
+                        </Typography>
+                        <Input label="Email" disabled variant="outlined" defaultValue={user?.email} className="w-full"/>
+                    </div>
+                </DialogBody>
+                <DialogFooter>
+                    <Button
+                        variant="text"
+                        color="red"
+                        onClick={() => handleOpen(null)}
+                        className="mr-1"
+                    >
+                        <span>Cancel</span>
+                    </Button>
+                    <Button
+                        variant="gradient"
+                        color="green"
+                        onClick={() => { handleOpen(null); handleDonate(); }}
+                    >
+                        <span>Confirm</span>
+                    </Button>
+                </DialogFooter>
+            </Dialog>
         </div>
     );
 };
