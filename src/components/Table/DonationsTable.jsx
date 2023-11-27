@@ -2,9 +2,37 @@ import { Typography } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 import { Button } from "@material-tailwind/react";
 import { Link } from 'react-router-dom';
+import axiosSecure from '../../api/axiosSecure';
+import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
-const DonationsTable = ({ donation, index }) => {
+const DonationsTable = ({ donation, index, refetch }) => {
     const { _id, recipient, district, upazila, date, time, status } = donation;
+
+    const handleDelete = async () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+
+                try {
+                    const { data } = await axiosSecure.delete(`/requests/${_id}`);
+                    if (data?.deletedCount > 0) {
+                        toast.success('Request has been deleted!');
+                        refetch();
+                    }
+                } catch (error) {
+                    toast.error(error.message);
+                }
+            }
+        });
+    };
 
     return (
         <tr key={donation._id} className='bg-gray-50 '>
@@ -102,6 +130,7 @@ const DonationsTable = ({ donation, index }) => {
                 <Button
                     color='red'
                     className='py-1 px-2'
+                    onClick={handleDelete}
                 >
                     Delete
                 </Button>
@@ -113,6 +142,7 @@ const DonationsTable = ({ donation, index }) => {
 DonationsTable.propTypes = {
     donation: PropTypes.object,
     index: PropTypes.number,
+    refetch: PropTypes.func,
 }
 
 export default DonationsTable;

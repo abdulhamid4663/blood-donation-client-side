@@ -4,7 +4,7 @@ import DonationsTable from "../../../components/Table/DonationsTable";
 
 const TABLE_HEAD = ["#", "Recipient", "District", "Upazila", "Date", "Time", "Status", "Action"];
 const AllDonationRequests = () => {
-    const [requests] = useRequests();
+    const [requests, refetch] = useRequests();
 
     return (
         <div className="py-12 px-4 lg:px-6 xl:px-12">
@@ -37,7 +37,9 @@ const AllDonationRequests = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {requests?.map((request, index) => <DonationsTable key={request._id} donation={request} index={index} /> )}
+                            {
+                                requests?.map((request, index) => <DonationsTable key={request._id} donation={request} index={index} refetch={refetch} />)
+                            }
                         </tbody>
                     </table>
                 </Card>

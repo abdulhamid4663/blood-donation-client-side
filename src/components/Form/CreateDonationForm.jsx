@@ -6,6 +6,7 @@ import {
     Select,
     Option,
     Textarea,
+    Alert,
 } from "@material-tailwind/react";
 import useDistricts from "../../hooks/useDistricts";
 import useUpazilas from "../../hooks/useUpazilas";
@@ -14,11 +15,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import useUserStatus from "../../hooks/useUserStatus";
 
 function CreateDonationForm() {
     const [districts] = useDistricts();
     const [upazilas] = useUpazilas();
     const { user } = useAuth();
+    const { userStatus } = useUserStatus();
     const [selectedDistrict, setSelectedDistrict] = useState([])
     const navigate = useNavigate();
 
@@ -72,6 +75,11 @@ function CreateDonationForm() {
     return (
         <div className="flex justify-center items-center w-full min-h-screen">
             <Card color="transparent" className="w-full px-6 md:px-4 pt-8 pb-12" shadow={false}>
+                {
+                    userStatus === "blocked" &&
+                    <Alert variant="ghost" color="red">Your account has been blocked, please contact our <span className="font-semibold underline cursor-pointer">Contact Support</span> for more information.</Alert>
+
+                }
                 <form onSubmit={handleSubmit} className="mt-8 mb-2 w-full max-w-screen-lg mx-auto ">
                     <Typography variant="h3" color="blue-gray" className="text-center lg:text-start">
                         Create Donation Request
@@ -256,7 +264,7 @@ function CreateDonationForm() {
                             </div>
                         </div>
                     </div>
-                    <Button type="submit" className="mt-6 bg-red-600" fullWidth>
+                    <Button disabled={(userStatus === "blocked")} type="submit" className="mt-6 bg-red-600" fullWidth>
                         Send Request
                     </Button>
                 </form>

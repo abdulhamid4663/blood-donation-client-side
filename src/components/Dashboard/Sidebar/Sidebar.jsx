@@ -18,7 +18,7 @@ import useAuth from "../../../hooks/useAuth";
 import VolunteerMenus from "../Volunteer/VolunteerMenus";
 
 function Sidebar() {
-    const { role } = useRole();
+    const { userRole } = useRole();
     const { userLogout } = useAuth();
     
     return (
@@ -39,13 +39,13 @@ function Sidebar() {
             </div>
             <List>
                 {
-                    role === 'admin' && <AdminMenus />
+                    userRole === 'admin' && <AdminMenus />
                 }
                 {
-                    role === 'donor' && <DonorMenus />
+                    userRole === 'donor' && <DonorMenus />
                 }
                 {
-                    role === "volunteer" && <VolunteerMenus />
+                    userRole === "volunteer" && <VolunteerMenus />
                 }
                 <Link to='/dashboard/profile'>
                     <ListItem>

@@ -6,7 +6,7 @@ import axiosSecure from "../api/axiosSecure";
 const useRequests = () => {
     const { user, loading } = useAuth();
 
-    const { data: requests = [] } = useQuery({
+    const { data: requests = [], refetch, isFetching } = useQuery({
         queryKey: ['requests'],
         enabled: !loading,
         queryFn: async () => {
@@ -15,7 +15,7 @@ const useRequests = () => {
         }
     })
 
-    return [requests]
+    return [requests, refetch, isFetching]
 };
 
 export default useRequests;

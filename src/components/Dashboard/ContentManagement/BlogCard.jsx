@@ -18,7 +18,7 @@ import useRole from '../../../hooks/useRole';
 
 const BlogCard = ({ blog, refetch }) => {
     const { user } = useAuth();
-    const { role } = useRole();
+    const { userRole } = useRole();
     const { _id, name, image, title, content, thumbnail, status } = blog;
 
     const handlePublishChange = async (value) => {
@@ -81,7 +81,7 @@ const BlogCard = ({ blog, refetch }) => {
                         <div className='absolute w-full px-4 top-4 justify-between flex'>
                             <div className='flex flex-col gap-2'>
                                 {
-                                    role === "admin" &&
+                                    userRole === "admin" &&
                                     <Button
                                         size='sm'
                                         color='red'
@@ -99,7 +99,7 @@ const BlogCard = ({ blog, refetch }) => {
                                 </Link>
                             </div>
                             {
-                                role === "admin" &&
+                                userRole === "admin" &&
                                 <>
                                     {
                                         status === "published" ?
