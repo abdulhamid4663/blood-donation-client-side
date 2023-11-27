@@ -1,8 +1,8 @@
 import { Button, Typography } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import axiosSecure from "../../../../api/axiosSecure";
-import BlogCard from "../../../../components/Dashboard/ContentManagement/BlogCard";
+import axiosSecure from "../../../api/axiosSecure";
+import BlogCard from "../../../components/Dashboard/ContentManagement/BlogCard";
 import { useState } from "react";
 
 const ContentManagement = () => {
