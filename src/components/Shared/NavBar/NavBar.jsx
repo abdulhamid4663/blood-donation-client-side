@@ -69,7 +69,7 @@ export function NavBar() {
                 className="p-1 font-normal"
             >
                 <NavLink
-                    to='/account'
+                    to='/blog'
                     className={({ isActive }) =>
                         isActive
                             ? "text-[#FD2C2D]"

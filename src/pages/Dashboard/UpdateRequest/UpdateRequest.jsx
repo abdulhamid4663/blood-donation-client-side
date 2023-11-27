@@ -82,7 +82,7 @@ function UpdateRequest() {
             <Card color="transparent" className="w-full px-6 md:px-4 pt-8 pb-12" shadow={false}>
                 <form onSubmit={handleSubmit} className="mt-8 mb-2 w-full max-w-screen-lg mx-auto ">
                     <Typography variant="h3" color="blue-gray" className="text-center lg:text-start">
-                        Create Donation Request
+                        Update Donation Request
                     </Typography>
                     <Typography variant="paragraph" color="gray" className="mt-2 font-normal max-w-4xl mx-auto lg:mx-0 text-center lg:text-start">
                         Welcome to the heart of compassion and hope. By creating a donation request, you&apos;re taking a powerful step towards saving lives. This page serves as a bridge between those in urgent need of blood and the generous donors ready to make a life-changing difference.

@@ -22,7 +22,7 @@ const currentYear = new Date().getFullYear();
 
 export function Footer() {
     return (
-        <footer className="relative w-full mt-52" style={{ backgroundImage: `url('${wave}')`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundColor: "#d3d3d324", width: "100%" }}>
+        <footer className="relative w-full" style={{ backgroundImage: `url('${wave}')`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundColor: "#d3d3d324", width: "100%" }}>
             <div className="mx-auto w-full max-w-7xl px-8 pt-14">
                 <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
                     <div className="mb-6">

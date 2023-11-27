@@ -1,5 +1,5 @@
 import { ListItem, ListItemPrefix } from "@material-tailwind/react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const AdminMenus = () => {
     return (
@@ -19,7 +19,12 @@ const AdminMenus = () => {
                     All Donation Requests
                 </ListItem>
             </NavLink>
-            <Link to='/dashboard/users'>
+            <NavLink to='/dashboard/users'
+                className={({ isActive }) =>
+                    isActive
+                        ? "bg-gray-100 active:bg-gray-100 focus:bg-gray-100"
+                        : ""
+                }>
                 <ListItem>
                     <ListItemPrefix>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -28,8 +33,13 @@ const AdminMenus = () => {
                     </ListItemPrefix>
                     All Users
                 </ListItem>
-            </Link>
-            <Link to='/dashboard/create-donation-request'>
+            </NavLink>
+            <NavLink to='/dashboard/create-donation-request'
+                className={({ isActive }) =>
+                    isActive
+                        ? "bg-gray-100 active:bg-gray-100 focus:bg-gray-100"
+                        : ""
+                }>
                 <ListItem>
                     <ListItemPrefix>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -38,8 +48,13 @@ const AdminMenus = () => {
                     </ListItemPrefix>
                     Create Donation Request
                 </ListItem>
-            </Link>
-            <Link to='/dashboard/content-management'>
+            </NavLink>
+            <NavLink to='/dashboard/content-management'
+                className={({ isActive }) =>
+                    isActive
+                        ? "bg-gray-100 active:bg-gray-100 focus:bg-gray-100"
+                        : ""
+                }>
                 <ListItem>
                     <ListItemPrefix>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -48,7 +63,7 @@ const AdminMenus = () => {
                     </ListItemPrefix>
                     Content Management
                 </ListItem>
-            </Link>
+            </NavLink>
         </>
     );
 };

@@ -14,6 +14,7 @@ import Profile from "../pages/Dashboard/Common/Profile";
 import MyDonationRequests from "../pages/Dashboard/Common/MyDonationRequests";
 import UpdateRequest from "../pages/Dashboard/UpdateRequest/UpdateRequest";
 import AddBlog from "../pages/Dashboard/Admin/ContentManagement/AddBlog/AddBlog";
+import Blog from "../pages/Blog/Blog";
 
 const router = createBrowserRouter([
     {
@@ -23,7 +24,11 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
-            }
+            },
+            {
+                path: "/blog",
+                element: <Blog />
+            },
         ]
     },
     {
@@ -52,7 +57,8 @@ const router = createBrowserRouter([
             },
             {
                 path: 'all-donation-requests',
-                element: <AllDonationRequests />
+                element: <AllDonationRequests />,
+                loader: () => fetch('http://localhost:5000/requestsCount'),
             },
             {
                 path: 'content-management',
