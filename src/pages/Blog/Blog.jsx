@@ -37,27 +37,37 @@ const Blog = () => {
                                 return (
                                     <div key={blog._id} className="mb-24">
                                         <img src={blog?.thumbnail} alt="" className="w-full " />
-                                        <div>
-                                            <Typography
-                                                color="blue-gray"
-                                                className="text-2xl lg:text-4xl font-medium mb-2 mt-6"
-                                            >
-                                                {blog?.title}
-                                            </Typography>
-                                        </div>
-                                        <div className="">
-                                            <div>
+                                        <div className="mt-4 mb-6">
+                                            <div className="flex justify-between items-center">
+                                                <Typography
+                                                    variant="small"
+                                                    color="gray"
+                                                    className="font-medium"
+                                                >
+                                                    Posted By:
+                                                    <span className="pl-1 text-red-500 cursor-pointer hover:underline">
+                                                        {blog?.name}
+                                                    </span>
+                                                </Typography>
                                                 <Typography
                                                     variant="small"
                                                     color="gray"
                                                     className="font-medium"
                                                 >
                                                     Published Date:
-                                                    <span className="pl-1">
+                                                    <span className="pl-1 font-black">
                                                         {blog?.published_date}
                                                     </span>
                                                 </Typography>
                                             </div>
+                                        </div>
+                                        <div>
+                                            <Typography
+                                                color="blue-gray"
+                                                className="text-2xl lg:text-4xl font-medium mb-2 "
+                                            >
+                                                {blog?.title}
+                                            </Typography>
                                         </div>
                                         <hr />
                                         <div className="mt-6">

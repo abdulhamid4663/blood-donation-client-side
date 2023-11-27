@@ -93,7 +93,7 @@ const DonationsTable = ({ donation, index, refetch }) => {
             <td>
                 <Typography
                     variant="small"
-                    color="blue-gray"
+                    color="red"
                     className="font-normal pl-4 py-2"
                 >
                     {status}
@@ -101,22 +101,28 @@ const DonationsTable = ({ donation, index, refetch }) => {
             </td>
             <td className='flex items-center gap-2 py-2 pl-4'>
                 {
-                    status === "inProgress"
-                    &&
-                    <>
-                        <Button
-                            color='green'
-                            className='py-1 px-2'
-                        >
-                            Done
-                        </Button>
-                        <Button
-                            color='orange'
-                            className='py-1 px-2'
-                        >
-                            Cancel
-                        </Button>
-                    </>
+                    status === "done" || status === "canceled" ? ""
+                        :
+                        <>
+                            {
+                                status === "inprogress"
+                                &&
+                                <>
+                                    <Button
+                                        color='green'
+                                        className='py-1 px-2'
+                                    >
+                                        Done
+                                    </Button>
+                                    <Button
+                                        color='orange'
+                                        className='py-1 px-2'
+                                    >
+                                        Cancel
+                                    </Button>
+                                </>
+                            }
+                        </>
                 }
                 <Link to={`/dashboard/updateRequest/${_id}`}>
                     <Button

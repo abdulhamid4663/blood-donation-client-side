@@ -40,6 +40,7 @@ function CreateDonationForm() {
         const upazila = form.upazila.value;
         const hospital = form.hospital.value;
         const address = form.address.value;
+        const bloodType = form.bloodType.innerText
         const date = form.date.value;
         const time = form.time.value;
         const message = form.message.value;
@@ -54,6 +55,7 @@ function CreateDonationForm() {
                 upazila,
                 hospital,
                 address,
+                bloodType,
                 date,
                 time,
                 message,

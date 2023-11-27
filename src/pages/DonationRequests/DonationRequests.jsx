@@ -13,7 +13,6 @@ const DonationRequests = () => {
             return data;
         }
     })
-    console.log(requests);
 
     return (
         <div className="bg-gray-200">

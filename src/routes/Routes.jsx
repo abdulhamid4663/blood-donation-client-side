@@ -16,6 +16,7 @@ import UpdateRequest from "../pages/Dashboard/UpdateRequest/UpdateRequest";
 import AddBlog from "../pages/Dashboard/Admin/ContentManagement/AddBlog/AddBlog";
 import Blog from "../pages/Blog/Blog";
 import DonationRequests from "../pages/DonationRequests/DonationRequests";
+import DonationRequestsDetails from "../pages/DonationRequestsDetails/DonationRequestsDetails";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
             {
                 path: "/donation-requests",
                 element: <DonationRequests />
+            },
+            {
+                path: "/donation-requests/:id",
+                element: <PrivateRoutes><DonationRequestsDetails /></PrivateRoutes> ,
+                loader: ({params}) => fetch(`http://localhost:5000/request/${params.id}`)
             },
             {
                 path: "/blog",
