@@ -5,7 +5,7 @@ import axiosSecure from "../api/axiosSecure";
 const useRole = () => {
     const { user, loading } = useAuth();
 
-    const { data: userRole = '' } = useQuery({
+    const { data: userRole = '', isLoading } = useQuery({
         queryKey: ['role'],
         enabled: !loading,
         queryFn: async () => {
@@ -14,7 +14,7 @@ const useRole = () => {
         }
     })
 
-    return {userRole}
+    return {userRole, isLoading}
 };
 
 export default useRole;

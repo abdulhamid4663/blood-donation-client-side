@@ -83,7 +83,7 @@ const Profile = () => {
     }
 
     return (
-        <div className="py-12 px-4 lg:px-6 xl:px-12">
+        <div className="pt-12 pb-32 px-4 lg:px-6 xl:px-12">
             <Typography color="blue-gray" className="text-center text-2xl lg:text-4xl font-medium mb-7">
                 Profile
             </Typography>

@@ -18,6 +18,9 @@ import Blog from "../pages/Blog/Blog";
 import DonationRequests from "../pages/DonationRequests/DonationRequests";
 import DonationRequestsDetails from "../pages/DonationRequestsDetails/DonationRequestsDetails";
 import SearchPage from "../pages/SearchPage/SearchPage";
+import DonateMoney from "../pages/DonateMoney/DonateMoney";
+import AdminRoute from "./AdminRoute";
+import AdminVolunteerRoute from "./AdminVolunteerRoute";
 
 const router = createBrowserRouter([
     {
@@ -44,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: "/searchPage",
                 element: <SearchPage />
+            },
+            {
+                path: "/donate-money",
+                element: <DonateMoney />
             },
         ]
     },
@@ -78,7 +85,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'content-management',
-                element: <ContentManagement />
+                element: <AdminVolunteerRoute><ContentManagement /></AdminVolunteerRoute>
             },
             {
                 path: 'content-management/add-blog',
@@ -90,7 +97,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'users',
-                element: <AllUsers />
+                element: <AdminRoute><AllUsers /></AdminRoute>
             },
             {
                 path: 'profile',

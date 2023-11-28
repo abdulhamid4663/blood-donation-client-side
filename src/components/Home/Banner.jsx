@@ -26,12 +26,15 @@ const Banner = () => {
                         Discover the incredible gift that lies within you. By donating blood, you offer hope and healing to those in need. Your veins carry the potential to be a source of life for someone facing a medical crisis. Join us in this meaningful journey of making a difference through the simple act of blood donation
                     </Typography>
                     <div className="flex gap-3 mt-8">
-                        <Button
-                            variant="outlined"
-                            className="border-[#FD2C2D] text-white bg-[#FD2C2D] inline-block"
-                        >
-                            Join as a donor
-                        </Button>
+                        <Link to='/register'>
+                            <Button
+                                variant="filled"
+                                size="lg"
+                                className="border-[#FD2C2D] text-white bg-[#FD2C2D] inline-block"
+                            >
+                                Join as a donor
+                            </Button>
+                        </Link>
                         <Link to='/searchPage'>
                             <Button
                                 variant="outlined"
@@ -64,13 +67,14 @@ const Banner = () => {
                         Discover the incredible gift that lies within you. By donating blood, you offer hope and healing to those in need. Your veins carry the potential to be a source of life for someone facing a medical crisis. Join us in this meaningful journey of making a difference through the simple act of blood donation
                     </Typography>
                     <div className="flex gap-3 mt-8">
-                        <Button
-                            variant="outlined"
-                            size="sm"
-                            className="border-[#FD2C2D] text-white bg-[#FD2C2D] inline-block"
-                        >
-                            Join as a donor
-                        </Button>
+                        <Link to='/register'>
+                            <Button
+                                variant="outlined"
+                                className="border-[#FD2C2D] py-[10px] text-white bg-[#FD2C2D] inline-block"
+                            >
+                                Join as a donor
+                            </Button>
+                        </Link>
                         <Link to='/searchPage'>
                             <Button
                                 variant="outlined"

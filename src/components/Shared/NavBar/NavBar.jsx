@@ -79,6 +79,23 @@ export function NavBar() {
                     Blog
                 </NavLink>
             </Typography>
+            <Typography
+                as="li"
+                variant="h6"
+                color="blue-gray"
+                className="p-1 font-normal"
+            >
+                <NavLink
+                    to='/donate-money'
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-[#FD2C2D]"
+                            : "text-black hover:text-[#FD2C2D] transition-all duration-200 ease-in-out"
+                    }
+                >
+                    Donate Money
+                </NavLink>
+            </Typography>
         </ul>
     );
 
