@@ -14,6 +14,7 @@ import toast from 'react-hot-toast';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import useRole from '../../../hooks/useRole';
+import { Link } from 'react-router-dom';
 
 const BlogCard = ({ blog, refetch }) => {
     const { user } = useAuth();
@@ -79,16 +80,28 @@ const BlogCard = ({ blog, refetch }) => {
                         />
                         <div className='absolute w-full px-4 top-4 justify-between flex'>
 
-                            {
-                                userRole === "admin" &&
-                                <Button
-                                    size='sm'
-                                    color='red'
-                                    onClick={handleDeleteBlog}
-                                >
-                                    Delete
-                                </Button>
-                            }
+                            <div className='flex flex-col gap-2'>
+                                {
+                                    userRole === "admin" &&
+                                    <>
+                                        <Button
+                                            size='sm'
+                                            color='red'
+                                            onClick={handleDeleteBlog}
+                                        >
+                                            Delete
+                                        </Button>
+                                        <Link to={`/dashboard/content-management/${_id}`}>
+                                            <Button
+                                                size='sm'
+                                            >
+                                                Edit
+                                            </Button>
+                                        </Link>
+                                    </>
+                                }
+
+                            </div>
 
                             {
                                 userRole === "admin" &&

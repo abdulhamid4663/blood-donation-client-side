@@ -22,6 +22,7 @@ import DonateMoney from "../pages/DonateMoney/DonateMoney";
 import AdminRoute from "./AdminRoute";
 import AdminVolunteerRoute from "./AdminVolunteerRoute";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import UpdateBlog from "../pages/Dashboard/Admin/ContentManagement/UpdateBlog";
 
 const router = createBrowserRouter([
     {
@@ -109,6 +110,10 @@ const router = createBrowserRouter([
                 path: 'updateRequest/:id',
                 element: <UpdateRequest />,
                 loader: ({params}) => fetch(`http://localhost:5000/request/${params.id}`)
+            },
+            {
+                path: 'content-management/:id',
+                element: <UpdateBlog />,
             },
         ]
     },
