@@ -3,6 +3,7 @@ import app from "../config/firebase.config";
 import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import axiosSecure from "../api/axiosSecure";
+import { clearCookie } from "../api/auth";
 
 
 export const AuthContext = createContext(null)
@@ -26,7 +27,7 @@ const AuthProvider = ({ children }) => {
 
     const userLogout = async () => {
         setLoading(true)
-        await axiosSecure.get('/logout');
+        await clearCookie();
         return signOut(auth);
     }
 

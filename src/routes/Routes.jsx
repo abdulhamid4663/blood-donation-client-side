@@ -21,10 +21,12 @@ import SearchPage from "../pages/SearchPage/SearchPage";
 import DonateMoney from "../pages/DonateMoney/DonateMoney";
 import AdminRoute from "./AdminRoute";
 import AdminVolunteerRoute from "./AdminVolunteerRoute";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: '/',
+        errorElement: <ErrorPage />,
         element: <MainLayout />,
         children: [
             {
