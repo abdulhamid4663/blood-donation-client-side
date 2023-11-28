@@ -152,7 +152,7 @@ const AllUsersTable = ({ user, index, refetch }) => {
                         </Button>
                     </>
                         :
-                        <span className='text-xs font-medium'>Can&apos;t block/unblock the admin</span>
+                        <Typography className='text-xs font-medium'>Can&apos;t block/unblock the admin</Typography>
                 }
             </td>
             <td className='pl-4'>

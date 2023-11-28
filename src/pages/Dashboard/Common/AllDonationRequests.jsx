@@ -73,7 +73,7 @@ const AllDonationRequests = () => {
                             }
                         </tbody>
                     </table>
-                    <tfoot className="text-center">
+                    <div className="text-center">
                         <div className="flex items-center gap-8 mt-3 justify-center">
                             <Button
                                 size="sm"
@@ -82,13 +82,12 @@ const AllDonationRequests = () => {
                             >
                                 <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />
                             </Button>
-                            <Typography color="gray" className="font-normal flex items-center gap-1">
-
+                            <div color="gray" className="font-normal flex items-center gap-1">
                                 <div>
                                     Page <strong className="text-gray-900">{currentPage + 1}</strong> of{' '}
                                     <strong className="text-gray-900">{pages.length}</strong>
                                 </div>
-                            </Typography>
+                            </div>
                             <Button
                                 size="sm"
                                 variant="filled"
@@ -97,7 +96,7 @@ const AllDonationRequests = () => {
                                 <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
                             </Button>
                         </div>
-                    </tfoot>
+                    </div>
                 </Card>
             </div>
         </div>

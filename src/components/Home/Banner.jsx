@@ -1,4 +1,5 @@
 import { Button, Typography } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 
 const Banner = () => {
@@ -31,15 +32,17 @@ const Banner = () => {
                         >
                             Join as a donor
                         </Button>
-                        <Button
-                            variant="outlined"
-                            className="flex items-center gap-2"
-                        >
-                            Search Donors
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                            </svg>
-                        </Button>
+                        <Link to='/searchPage'>
+                            <Button
+                                variant="outlined"
+                                className="flex items-center gap-2"
+                            >
+                                Search Donors
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                </svg>
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -68,16 +71,18 @@ const Banner = () => {
                         >
                             Join as a donor
                         </Button>
-                        <Button
-                            variant="outlined"
-                            size="sm"
-                            className="flex border-white text-white items-center gap-2"
-                        >
-                            Search Donors
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                            </svg>
-                        </Button>
+                        <Link to='/searchPage'>
+                            <Button
+                                variant="outlined"
+                                size="sm"
+                                className="flex border-white text-white items-center gap-2"
+                            >
+                                Search Donors
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                </svg>
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,6 @@ import axiosSecure from '../../../api/axiosSecure';
 import toast from 'react-hot-toast';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
 import useRole from '../../../hooks/useRole';
 
 const BlogCard = ({ blog, refetch }) => {
@@ -79,25 +78,18 @@ const BlogCard = ({ blog, refetch }) => {
                             src={thumbnail}
                         />
                         <div className='absolute w-full px-4 top-4 justify-between flex'>
-                            <div className='flex flex-col gap-2'>
-                                {
-                                    userRole === "admin" &&
-                                    <Button
-                                        size='sm'
-                                        color='red'
-                                        onClick={handleDeleteBlog}
-                                    >
-                                        Delete
-                                    </Button>
-                                }
-                                <Link to={`/dashboard/content-management/updateBlog/${_id}`} className='max-w-fit'>
-                                    <Button
-                                        size='sm'
-                                    >
-                                        Edit
-                                    </Button>
-                                </Link>
-                            </div>
+
+                            {
+                                userRole === "admin" &&
+                                <Button
+                                    size='sm'
+                                    color='red'
+                                    onClick={handleDeleteBlog}
+                                >
+                                    Delete
+                                </Button>
+                            }
+
                             {
                                 userRole === "admin" &&
                                 <>

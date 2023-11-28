@@ -17,6 +17,7 @@ import AddBlog from "../pages/Dashboard/Admin/ContentManagement/AddBlog/AddBlog"
 import Blog from "../pages/Blog/Blog";
 import DonationRequests from "../pages/DonationRequests/DonationRequests";
 import DonationRequestsDetails from "../pages/DonationRequestsDetails/DonationRequestsDetails";
+import SearchPage from "../pages/SearchPage/SearchPage";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             {
                 path: "/blog",
                 element: <Blog />
+            },
+            {
+                path: "/searchPage",
+                element: <SearchPage />
             },
         ]
     },
