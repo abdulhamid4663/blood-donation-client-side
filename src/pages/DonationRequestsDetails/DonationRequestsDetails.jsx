@@ -12,7 +12,6 @@ const DonationRequestsDetails = () => {
     const request = useLoaderData();
     const navigate = useNavigate();
     const [size, setSize] = useState(null);
-    
 
     const handleOpen = (value) => setSize(value);
 
@@ -45,7 +44,7 @@ const DonationRequestsDetails = () => {
     }
 
     return (
-        <div className="bg-gray-200 py-20">
+        <div className="bg-gray-200 py-20 px-6 md:px-4">
             <Helmet>
                 <title>Donation Request Details || LifeFlow</title>
             </Helmet>
@@ -80,7 +79,7 @@ const DonationRequestsDetails = () => {
                     </Typography>
                 </CardBody>
                 <CardFooter className="pt-0">
-                    <Button disabled={request?.email === user?.email} onClick={() => handleOpen("sm")} variant="gradient" color="red" className="w-full">
+                    <Button onClick={() => handleOpen("sm")} variant="gradient" color="red" className="w-full">
                         Donate
                     </Button>
                 </CardFooter>

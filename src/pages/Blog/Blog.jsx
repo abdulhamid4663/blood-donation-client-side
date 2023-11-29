@@ -94,10 +94,10 @@ const Blog = () => {
                                             Share on social media:
                                         </Typography>
                                         <div className="flex items-center gap-2">
-                                            <FacebookShareButton url={`http://localhost:5173/blog/${blog._id}`} >
+                                            <FacebookShareButton url={`https://ornate-narwhal-7a3a3b.netlify.app/blog/${blog._id}`} >
                                                 <FacebookIcon size={28} round={true} />
                                             </FacebookShareButton>
-                                            <TwitterShareButton url={`http://localhost:5173/blog/${blog._id}`} >
+                                            <TwitterShareButton url={`https://ornate-narwhal-7a3a3b.netlify.app/blog/${blog._id}`} >
                                                 <TwitterIcon size={28} round={true} /> 
                                             </TwitterShareButton>
                                         </div>

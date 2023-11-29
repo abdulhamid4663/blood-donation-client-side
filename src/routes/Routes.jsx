@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             {
                 path: "/donation-requests/:id",
                 element: <PrivateRoutes><DonationRequestsDetails /></PrivateRoutes> ,
-                loader: ({params}) => fetch(`http://localhost:5000/request/${params.id}`)
+                loader: ({params}) => fetch(`https://life-flow-server.vercel.app/request/${params.id}`)
             },
             {
                 path: "/blog",
@@ -89,7 +89,7 @@ const router = createBrowserRouter([
             {
                 path: 'all-donation-requests',
                 element: <AllDonationRequests />,
-                loader: () => fetch('http://localhost:5000/requestsCount'),
+                loader: () => fetch('https://life-flow-server.vercel.app/requestsCount'),
             },
             {
                 path: 'content-management',
@@ -114,7 +114,7 @@ const router = createBrowserRouter([
             {
                 path: 'updateRequest/:id',
                 element: <UpdateRequest />,
-                loader: ({params}) => fetch(`http://localhost:5000/request/${params.id}`)
+                loader: ({params}) => fetch(`https://life-flow-server.vercel.app/request/${params.id}`)
             },
             {
                 path: 'content-management/:id',
