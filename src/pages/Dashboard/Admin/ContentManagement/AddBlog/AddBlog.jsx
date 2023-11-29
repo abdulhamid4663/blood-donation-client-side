@@ -41,7 +41,7 @@ const AddBlog = () => {
                 status: "draft"
             };
 
-            const { data } = await axiosSecure.post(`/blogs`, blog);
+            const { data } = await axiosSecure.post(`/blogs/${user?.email}`, blog);
 
             if (data?.insertedId) {
                 toast.success('Blog has been added successfully');

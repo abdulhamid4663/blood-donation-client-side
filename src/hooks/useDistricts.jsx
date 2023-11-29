@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axiosSecure from "../api/axiosSecure";
 
 const useDistricts = () => {
-    const { data: districts = [], isFetching } = useQuery({
+    const { data: districts = [], isLoading: districtLoading, } = useQuery({
         queryKey: ['districts'],
         queryFn: async () => {
             const res = await axiosSecure.get('/districts');
@@ -11,7 +11,7 @@ const useDistricts = () => {
         }
     })
 
-    return [districts, isFetching ]
+    return [districts, districtLoading ]
 };
 
 export default useDistricts;

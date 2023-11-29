@@ -12,12 +12,12 @@ import { Helmet } from "react-helmet-async";
 
 const Profile = () => {
     const inputRef = useRef(null);
-    const [districts, isFetching] = useDistricts();
-    const [upazilas, isLoading] = useUpazilas();
+    const [districts, districtLoading] = useDistricts();
+    const [upazilas, upazilaLoading] = useUpazilas();
     const { user, updateUserProfile } = useAuth();
     const [selectedDistrict, setSelectedDistrict] = useState([])
     const [image, setImage] = useState('');
-
+    
     const { data: currentUser = {}, refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
@@ -25,7 +25,7 @@ const Profile = () => {
             return data;
         }
     })
-
+    
     const handleDistrictChange = async e => {
         const { data } = await axiosSecure.get(`/upazilas/${e.target.value}`)
         setSelectedDistrict(data)
@@ -50,18 +50,21 @@ const Profile = () => {
         const currentImage = currentUser?.image;
         const imageFile = image;
         let imgBBData = null
-
+        
         try {
             if (imageFile) {
                 const imageData = await imageUpload(imageFile);
-                await updateUserProfile(name, imageData?.data?.display_url)
                 imgBBData = imageData
             }
-
+    
             if (!imgBBData) {
                 await updateUserProfile(name)
             }
-
+    
+            if (imgBBData) {
+                await updateUserProfile(name, imgBBData?.data?.display_url)
+            }
+            
             const updatedDoc = {
                 name,
                 email,
@@ -80,7 +83,6 @@ const Profile = () => {
         } catch (error) {
             toast.error(error.message)
         }
-
     }
 
     return (
@@ -104,8 +106,9 @@ const Profile = () => {
                                     )
                                     :
                                     (
-                                        <img src={currentUser?.image} alt="" className="w-full h-full object-cover rounded-full" />
-
+                                        <>
+                                            <img src={currentUser?.image} alt="" className="w-full h-full object-cover rounded-full" />
+                                        </>
                                     )
                             }
                             <input type="file" ref={inputRef} className="hidden" onChange={handleImageChange} />
@@ -151,7 +154,7 @@ const Profile = () => {
                                 District
                             </Typography>
                             {
-                                !isLoading && !isFetching ?
+                                !districtLoading && !upazilaLoading ?
                                     <select defaultValue={currentUser?.district} required name="district" onChange={handleDistrictChange} className="w-full py-3 border-[1px] border-[#B0BEC5] rounded-md bg-transparent px-3" >
                                         {
                                             districts?.map((district) => <option className="bg-white" key={district._id} value={`${district?.name}`}>{district.name}</option>)
@@ -165,7 +168,7 @@ const Profile = () => {
                                 Upazila
                             </Typography>
                             {
-                                !isLoading && !isFetching ?
+                                !districtLoading && !upazilaLoading ?
                                     <select defaultValue={currentUser?.upazila} required name="upazila" className="w-full py-3 border-[1px] border-[#B0BEC5] rounded-md bg-transparent px-3" size="md">
                                         {
                                             selectedDistrict?.length > 0

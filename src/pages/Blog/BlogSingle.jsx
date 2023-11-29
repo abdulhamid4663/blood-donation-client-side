@@ -8,16 +8,20 @@ import { Helmet } from "react-helmet-async";
 const BlogSingle = () => {
     const { id } = useParams()
     const [blog, setBlog] = useState({})
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         axiosSecure.get(`/blog/${id}`)
             .then(res => {
                 setBlog(res.data);
+                setLoading(false)
             })
             .catch(error => {
                 console.error(error.message);
             })
     }, [id])
+
+    if(loading) return;
 
     return (
         <div>

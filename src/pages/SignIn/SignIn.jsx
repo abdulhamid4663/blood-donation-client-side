@@ -30,6 +30,7 @@ function SignIn() {
 
         if (validateCaptcha(captcha) !== true) {
             toast.error('Captcha is not Matched');
+            form.captcha.value = ''
             return;
         }
 

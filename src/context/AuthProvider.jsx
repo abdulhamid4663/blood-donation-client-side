@@ -31,11 +31,17 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
-    const updateUserProfile = (name, image) => {
-        setLoading(true)
-        return updateProfile(auth.currentUser, {
-            displayName: name, photoURL: image
-        })
+    const updateUserProfile = async (name, image) => {
+        setLoading(true);
+        try {
+            await updateProfile(auth.currentUser, {
+                displayName: name, photoURL: image
+            });
+        } catch (error) {
+            console.error("Failed to update profile: ", error);
+        } finally {
+            setLoading(false);
+        }
     }
 
     const loginWIthGoogle = () => {
@@ -46,16 +52,16 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             const userEmail = currentUser?.email
-            
+
             setUser(currentUser);
             console.log(currentUser);
             setLoading(false);
-            
+
             if (currentUser) {
                 axiosSecure.post('/jwt', { email: userEmail })
-                .then(res => {
-                    console.log(res.data);
-                })
+                    .then(res => {
+                        console.log(res.data);
+                    })
             }
         });
 

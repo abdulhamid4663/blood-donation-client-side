@@ -3,7 +3,7 @@ import axiosSecure from "../api/axiosSecure";
 
 
 const useUpazilas = () => {
-    const { data: upazilas = [], isLoading } = useQuery({
+    const { data: upazilas = [], isLoading: upazilaLoading } = useQuery({
         queryKey: ['upazilas'],
         queryFn: async () => {
             const res = await axiosSecure.get('/upazilas');
@@ -11,7 +11,7 @@ const useUpazilas = () => {
         }
     })
 
-    return [upazilas, isLoading]
+    return [upazilas, upazilaLoading]
 };
 
 export default useUpazilas;

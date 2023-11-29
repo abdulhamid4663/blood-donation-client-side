@@ -73,10 +73,11 @@ const BlogCard = ({ blog, refetch }) => {
                         floated={false}
                         shadow={false}
                         color="transparent"
-                        className="m-0 rounded-none relative"
+                        className="m-0 rounded-none relative min-h-[200px] h-80"
                     >
                         <img
                             src={thumbnail}
+                            className='w-full h-full object-cover'
                         />
                         <div className='absolute w-full px-4 top-4 justify-between flex'>
 

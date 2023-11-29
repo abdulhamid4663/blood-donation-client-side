@@ -88,7 +88,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'all-donation-requests',
-                element: <AllDonationRequests />,
+                element: <AdminVolunteerRoute><AllDonationRequests /></AdminVolunteerRoute>,
                 loader: () => fetch('https://life-flow-server.vercel.app/requestsCount'),
             },
             {
@@ -97,7 +97,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'content-management/add-blog',
-                element: <AddBlog />
+                element: <AdminVolunteerRoute><AddBlog /></AdminVolunteerRoute>
             },
             {
                 path: 'create-donation-request',
@@ -118,7 +118,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'content-management/:id',
-                element: <UpdateBlog />,
+                element: <AdminRoute><UpdateBlog /></AdminRoute>,
             },
         ]
     },
