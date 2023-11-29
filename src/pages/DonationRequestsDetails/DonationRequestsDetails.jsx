@@ -4,6 +4,7 @@ import axiosSecure from "../../api/axiosSecure";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 
 const DonationRequestsDetails = () => {
@@ -45,6 +46,9 @@ const DonationRequestsDetails = () => {
 
     return (
         <div className="bg-gray-200 py-20">
+            <Helmet>
+                <title>Donation Request Details || LifeFlow</title>
+            </Helmet>
             <Typography color="blue-gray" className="text-center text-2xl lg:text-4xl font-medium mb-7">
                 Donation Request Details
             </Typography>

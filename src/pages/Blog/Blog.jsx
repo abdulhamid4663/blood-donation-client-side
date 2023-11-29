@@ -2,7 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import axiosSecure from "../../api/axiosSecure";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import { useState } from "react";
-
+import {
+    FacebookShareButton,
+    TwitterShareButton,
+} from "react-share";
+import {
+    FacebookIcon,
+    TwitterIcon,
+} from "react-share";
 
 const Blog = () => {
     const [searchValue, setSearchValue] = useState('')
@@ -10,7 +17,7 @@ const Blog = () => {
     const { data: blogs = [] } = useQuery({
         queryKey: ['blogs', searchValue],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/blogs?status=published&search=${searchValue}`)
+            const { data } = await axiosSecure.get(`/publishedBlogs?search=${searchValue}`)
             return data;
         }
     })
@@ -70,7 +77,7 @@ const Blog = () => {
                                             </Typography>
                                         </div>
                                         <hr />
-                                        <div className="mt-6">
+                                        <div className="mt-6 mb-10">
                                             <Typography
                                                 variant="paragraph"
                                                 color="blue-gray"
@@ -78,6 +85,21 @@ const Blog = () => {
 
                                                 {blog?.content}
                                             </Typography>
+                                        </div>
+                                        <Typography
+                                            variant="small"
+                                            color="gray"
+                                            className="mb-3"
+                                        >
+                                            Share on social media:
+                                        </Typography>
+                                        <div className="flex items-center gap-2">
+                                            <FacebookShareButton url={`http://localhost:5173/blog/${blog._id}`} >
+                                                <FacebookIcon size={28} round={true} />
+                                            </FacebookShareButton>
+                                            <TwitterShareButton url={`http://localhost:5173/blog/${blog._id}`} >
+                                                <TwitterIcon size={28} round={true} /> 
+                                            </TwitterShareButton>
                                         </div>
                                     </div>
                                 )

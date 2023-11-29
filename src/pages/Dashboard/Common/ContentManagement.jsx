@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axiosSecure from "../../../api/axiosSecure";
 import BlogCard from "../../../components/Dashboard/ContentManagement/BlogCard";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const ContentManagement = () => {
     const [sortValue, setSortValue] = useState('');
@@ -18,6 +19,9 @@ const ContentManagement = () => {
 
     return (
         <div className="pt-12 pb-32 px-4 lg:px-6 xl:px-12">
+            <Helmet>
+                <title>Content Management || LifeFlow</title>
+            </Helmet>
             <div className="flex justify-between">
                 <Typography
                     variant="lead"

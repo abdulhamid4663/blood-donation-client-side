@@ -7,6 +7,7 @@ import useDistricts from "../../../hooks/useDistricts";
 import useUpazilas from "../../../hooks/useUpazilas";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../../api/utils";
+import { Helmet } from "react-helmet-async";
 
 
 const Profile = () => {
@@ -84,6 +85,9 @@ const Profile = () => {
 
     return (
         <div className="pt-12 pb-32 px-4 lg:px-6 xl:px-12">
+            <Helmet>
+                <title>Profile || LifeFlow</title>
+            </Helmet>
             <Typography color="blue-gray" className="text-center text-2xl lg:text-4xl font-medium mb-7">
                 Profile
             </Typography>

@@ -13,7 +13,7 @@ const UpdateBlog = () => {
     const [image, setImage] = useState('');
     const navigate = useNavigate();
     const { id } = useParams();
-
+    
     const { data: blog = {} } = useQuery({
         queryKey: ['blog'],
         queryFn: async () => {

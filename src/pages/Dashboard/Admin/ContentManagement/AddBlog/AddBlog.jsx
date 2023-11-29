@@ -5,6 +5,7 @@ import axiosSecure from "../../../../../api/axiosSecure";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const AddBlog = () => {
     const { user } = useAuth();
@@ -54,6 +55,9 @@ const AddBlog = () => {
 
     return (
         <div className="pt-12 pb-32 px-4 lg:px-6 xl:px-12">
+            <Helmet>
+                <title>Add Blog || LifeFlow</title>
+            </Helmet>
             <div>
                 <Typography
                     variant="lead"

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import DonationsTable from "../../../components/Table/DonationsTable";
 import useRequests from "../../../hooks/useRequests";
 
@@ -13,6 +14,9 @@ const MyDonationRequests = () => {
 
     return (
         <div className="py-12 px-4 lg:px-6 xl:px-12">
+            <Helmet>
+                <title>My Donation Requests || LifeFlow</title>
+            </Helmet>
             <Typography
                 variant="lead"
                 className="text-center text-2xl lg:text-4xl font-medium mb-7"

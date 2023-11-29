@@ -4,16 +4,18 @@ import { Link } from "react-router-dom";
 
 const Contact = () => {
     return (
-        <div className="bg-[#F9F9F9] py-10 mt-32 mb-56">
-            <Typography
-                color="blue-gray"
-                className="text-center lg:mb-10 text-3xl lg:text-5xl font-semibold"
-            >
-                Contact US
-            </Typography>
+        <div className="bg-[#F9F9F9] py-10 mt-32 mb-32 lg:mb-64">
+            <div data-aos="fade-right">
+                <Typography
+                    color="blue-gray"
+                    className="text-center lg:mb-10 text-3xl lg:text-5xl font-semibold"
+                >
+                    Contact US
+                </Typography>
+            </div>
             <div className="flex flex-col lg:flex-row max-w-7xl mx-auto px-4 gap-6">
                 {/* Texts */}
-                <div className="lg:w-1/2 text-center lg:text-start py-8 lg:py-0">
+                <div data-aos="fade-up" className="lg:w-1/2 text-center lg:text-start py-8 lg:py-0">
                     <Typography
                         variant="paragraph"
                         color="gray"
@@ -84,7 +86,7 @@ const Contact = () => {
                     </div>
                 </div>
                 {/* Form */}
-                <div className="w-full lg:w-1/2 lg:-mb-40">
+                <div data-aos="fade-down" className="w-full lg:w-1/2 lg:-mb-40">
                     <form className="p-6 lg:p-10 bg-gray-50 shadow-lg rounded-xl flex flex-col gap-6">
                         <Typography
                             color="gray"

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axiosSecure from "../../../api/axiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const TABLE_HEAD = ["#", "Recipient", "District", "Upazila", "Date", "Time", "Status", "Action"];
 const AllDonationRequests = () => {
@@ -39,6 +40,9 @@ const AllDonationRequests = () => {
 
     return (
         <div className="py-12 px-4 lg:px-6 xl:px-12">
+            <Helmet>
+                <title>All Donation Requests || LifeFlow</title>
+            </Helmet>
             <Typography
                 variant="lead"
                 color="blue-gray"

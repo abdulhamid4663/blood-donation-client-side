@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axiosSecure from "../../api/axiosSecure";
 import { Typography } from "@material-tailwind/react";
 import DonationRequestsCard from "../../components/DonationRequests/DonationRequestsCard";
+import { Helmet } from "react-helmet-async";
 
 
 const DonationRequests = () => {
@@ -16,6 +17,9 @@ const DonationRequests = () => {
 
     return (
         <div className="bg-gray-200">
+            <Helmet>
+                <title>Donation Request || LifeFlow</title>
+            </Helmet>
             <div className="pt-12 pb-32 max-w-7xl mx-auto px-6 md:px-4">
                 <Typography color="blue-gray" className="text-center text-2xl lg:text-4xl font-medium mb-7">
                     View and Respond to Urgent Donation Appeals

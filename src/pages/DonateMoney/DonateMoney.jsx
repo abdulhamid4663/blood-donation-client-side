@@ -2,6 +2,7 @@ import { Card, Typography } from "@material-tailwind/react";
 import Payment from "../../components/Payment/Payment";
 import { useQuery } from "@tanstack/react-query";
 import axiosSecure from "../../api/axiosSecure";
+import { Helmet } from "react-helmet-async";
 
 
 const TABLE_HEAD = ["#", "Transaction Id", "Email", "Donation Amount", "Date"];
@@ -17,6 +18,9 @@ const DonateMoney = () => {
 
     return (
         <div className="pt-12 pb-32 px-4 lg:px-6 xl:px-12">
+            <Helmet>
+                <title>Donate Money || LifeFlow</title>
+            </Helmet>
             <Typography color="blue-gray" className="text-center text-2xl lg:text-4xl font-medium mb-7">
                 Donate Money to Support Our Cause
             </Typography>

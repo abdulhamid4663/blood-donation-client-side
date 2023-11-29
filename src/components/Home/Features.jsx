@@ -7,11 +7,12 @@ const Features = () => {
             <Typography
                 color="blue-gray"
                 className="text-center lg:mb-10 text-3xl lg:text-5xl font-semibold"
+                data-aos="fade-up"
             >
                 Our Services
             </Typography>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 md:mt-0">
-                <div className="">
+                <div data-aos="fade-up" className="">
                     <div className="">
                         <img src="https://i.ibb.co/377NBMQ/stock-photo-always-available.jpg" alt="profile-picture" className="w-36 h-36 mx-auto" />
                     </div>
@@ -24,7 +25,7 @@ const Features = () => {
                         </Typography>
                     </div>
                 </div>
-                <div className="md:mt-8">
+                <div data-aos="fade-up" className="md:mt-8">
                     <div className="">
                         <img src="https://i.ibb.co/N9BpBTz/safsdfdsasdfadfa.png" alt="profile-picture" className="w-36 h-36 mx-auto" />
                     </div>
@@ -37,7 +38,7 @@ const Features = () => {
                         </Typography>
                     </div>
                 </div>
-                <div className="md:mt-16">
+                <div data-aos="fade-up" className="md:mt-16">
                     <div className="">
                         <img src="https://i.ibb.co/YQmX47C/sdafsdfsdf.png" alt="profile-picture" className="w-36 h-36 mx-auto" />
                     </div>
