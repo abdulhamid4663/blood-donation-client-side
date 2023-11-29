@@ -53,8 +53,8 @@ export function Register() {
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
-        const bloodType = form.bloodType.textContent;
-        const role = form.role.textContent;
+        const bloodType = form.bloodType.innerText;
+        const role = form.role.innerText;
         const imageFile = form.image.files[0];
         const district = form.district.value;
         const upazila = form.upazila.value;

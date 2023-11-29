@@ -22,10 +22,10 @@ const SearchPage = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault()
-        const bloodType = searchBloodType;
+        const bloodType = encodeURIComponent(searchBloodType);
         const district = searchDistrict;
         const upazila = searchUpazila;
-
+        
         const { data } = await axiosSecure.get(`/searchUser?donor=donor&bloodType=${bloodType}&district=${district}&upazila=${upazila}`)
         setUserData(data)
     }
@@ -107,7 +107,7 @@ const SearchPage = () => {
                     {
                         userData?.map(user => {
                             return (
-                                <Card key={user?.key} className="w-96 max-w-sm">
+                                <Card key={user?._id} className="w-96 max-w-sm">
                                     <CardHeader floated={false} className="h-80">
                                         <img src={user?.image} alt="profile-picture" className="w-full h-full" />
                                     </CardHeader>
