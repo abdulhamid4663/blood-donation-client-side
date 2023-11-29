@@ -27,7 +27,7 @@ const BlogSection = () => {
                 {
                     blogs?.slice(0, 3)?.map(blog => {
                         return (
-                            <Card key={blog._id} className="mt-6">
+                            <Card key={blog._id} className="mt-6 flex flex-col">
                                 <CardHeader color="blue-gray" className="relative h-56">
                                     <img
                                         src={blog?.thumbnail}
@@ -35,7 +35,7 @@ const BlogSection = () => {
                                         className="w-full h-full object-cover"
                                     />
                                 </CardHeader>
-                                <CardBody>
+                                <CardBody className="flex-grow">
                                     <Typography color="blue-gray" className="mb-2 text-sm text-gray-600 font-medium flex items-center gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -46,9 +46,9 @@ const BlogSection = () => {
                                         {blog?.title}
                                     </Typography>
                                     <Typography>
-                                        The place is close to Barceloneta Beach and bus stop just 2 min by
-                                        walk and near to &quot;Naviglio&quot; where you can enjoy the main
-                                        night life in Barcelona.
+                                        {
+                                            blog?.content.length > 150 ? blog?.content.slice(0, 150) + "... " : blog?.content
+                                        }
                                     </Typography>
                                 </CardBody>
                                 <CardFooter className="pt-0">
@@ -68,7 +68,7 @@ const BlogSection = () => {
                     })
                 }
             </div>
-            <div className="mt-12 text-center">
+            <div data-aos="fade-up" className="mt-12 text-center">
                 <Link to='/blog'>
                     <Button>View More</Button>
                 </Link>

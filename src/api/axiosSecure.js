@@ -2,7 +2,7 @@ import axios from "axios";
 import { clearCookie } from "./auth";
 
 const axiosSecure = axios.create({
-    baseURL: 'https://life-flow-server.vercel.app',
+    baseURL: 'http://localhost:5000',
     withCredentials: true
 })
 
