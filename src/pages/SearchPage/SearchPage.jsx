@@ -25,7 +25,7 @@ const SearchPage = () => {
         const bloodType = encodeURIComponent(searchBloodType);
         const district = searchDistrict;
         const upazila = searchUpazila;
-        
+
         const { data } = await axiosSecure.get(`/searchUser?donor=donor&bloodType=${bloodType}&district=${district}&upazila=${upazila}`)
         setUserData(data)
     }
@@ -104,45 +104,47 @@ const SearchPage = () => {
                 </div>
                 <div className="mt-8">
                     {/* USER SEARCHED INFO */}
-                    {
-                        userData?.map(user => {
-                            return (
-                                <Card key={user?._id} className="w-96 max-w-sm">
-                                    <CardHeader floated={false} className="h-80">
-                                        <img src={user?.image} alt="profile-picture" className="w-full h-full" />
-                                    </CardHeader>
-                                    <CardBody className="text-center">
-                                        <Typography variant="h4" color="blue-gray" className="mb-2">
-                                            {user?.name}
-                                        </Typography>
-                                        <Typography color="blue-gray" className="font-medium" textGradient>
-                                            {user?.email}
-                                        </Typography>
-                                    </CardBody>
-                                    <CardFooter className="flex justify-center gap-7 pt-2">
-                                        <Typography
-                                            as="li"
-                                            className="text-center"
-                                        >
-                                            Blood Type: <span className="text-center text-gray-800 font-medium">{user?.bloodType}</span>
-                                        </Typography>
-                                        <Typography
-                                            as="li"
-                                            className="text-center"
-                                        >
-                                            District: <span className="text-center text-gray-800 font-medium">{user?.district}</span>
-                                        </Typography>
-                                        <Typography
-                                            as="li"
-                                            className="text-center"
-                                        >
-                                            Upazila: <span className="text-center text-gray-800 font-medium">{user?.upazila}</span>
-                                        </Typography>
-                                    </CardFooter>
-                                </Card>
-                            )
-                        })
-                    }
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {
+                            userData?.map(user => {
+                                return (
+                                    <Card key={user?._id} className="">
+                                        <CardHeader floated={false} className="h-80">
+                                            <img src={user?.image} alt="profile-picture" className="w-full h-full" />
+                                        </CardHeader>
+                                        <CardBody className="text-center">
+                                            <Typography variant="h4" color="blue-gray" className="mb-2">
+                                                {user?.name}
+                                            </Typography>
+                                            <Typography color="blue-gray" className="font-medium" textGradient>
+                                                {user?.email}
+                                            </Typography>
+                                        </CardBody>
+                                        <CardFooter className="flex justify-center gap-7 pt-2">
+                                            <Typography
+                                                as="li"
+                                                className="text-center"
+                                            >
+                                                Blood Type: <span className="text-center text-gray-800 font-medium">{user?.bloodType}</span>
+                                            </Typography>
+                                            <Typography
+                                                as="li"
+                                                className="text-center"
+                                            >
+                                                District: <span className="text-center text-gray-800 font-medium">{user?.district}</span>
+                                            </Typography>
+                                            <Typography
+                                                as="li"
+                                                className="text-center"
+                                            >
+                                                Upazila: <span className="text-center text-gray-800 font-medium">{user?.upazila}</span>
+                                            </Typography>
+                                        </CardFooter>
+                                    </Card>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         </div>
