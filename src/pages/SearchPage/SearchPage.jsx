@@ -1,9 +1,25 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, Option, Select, Typography } from "@material-tailwind/react";
+import {
+    Button,
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    Option, Select,
+    Typography,
+    Dialog,
+    DialogHeader,
+    DialogBody,
+    DialogFooter,
+    Input,
+    Textarea,
+} from "@material-tailwind/react";
 import { useState } from "react";
 import axiosSecure from "../../api/axiosSecure";
 import useDistricts from "../../hooks/useDistricts";
 import useUpazilas from "../../hooks/useUpazilas";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 // ○ search button
 const SearchPage = () => {
@@ -14,12 +30,46 @@ const SearchPage = () => {
     const [searchUpazila, setSearchUpazila] = useState('')
     const [searchBloodType, setSearchBloodType] = useState('')
     const [userData, setUserData] = useState([])
+    const [messageUser, setMessageUser] = useState({})
+    const { user } = useAuth();
+
+    const [size, setSize] = useState(null);
+
+    const handleOpen = (value) => setSize(value);
+
+    const getUser = (user) => setMessageUser(user)
+
+    const handleSendMessage = async e => {
+        e.preventDefault();
+        const message = e.target.message.value;
+        const phone = e.target.phone.value;
+
+        const info = {
+            name: user?.displayName,
+            from: user?.email,
+            to: messageUser?.email,
+            phone: phone,
+            message: message,
+        }
+
+        try {
+            const { data } = await axiosSecure.post('/sendMessage', info)
+            if (data?.success) {
+                toast.success('message send successfully')
+                handleOpen(null)
+            }
+
+        } catch (error) {
+            toast.error(error.message)
+        }
+
+    }
 
     const handleDistrictChange = async value => {
         const { data } = await axiosSecure.get(`/upazilas/${value}`)
         setSelectedDistrict(data)
     }
-
+    console.log(messageUser);
     const handleSearch = async (e) => {
         e.preventDefault()
         const bloodType = encodeURIComponent(searchBloodType);
@@ -120,31 +170,125 @@ const SearchPage = () => {
                                                 {user?.email}
                                             </Typography>
                                         </CardBody>
-                                        <CardFooter className="flex justify-center gap-7 pt-2">
-                                            <Typography
-                                                as="li"
-                                                className="text-center"
-                                            >
-                                                Blood Type: <span className="text-center text-gray-800 font-medium">{user?.bloodType}</span>
-                                            </Typography>
-                                            <Typography
-                                                as="li"
-                                                className="text-center"
-                                            >
-                                                District: <span className="text-center text-gray-800 font-medium">{user?.district}</span>
-                                            </Typography>
-                                            <Typography
-                                                as="li"
-                                                className="text-center"
-                                            >
-                                                Upazila: <span className="text-center text-gray-800 font-medium">{user?.upazila}</span>
-                                            </Typography>
+                                        <CardFooter className="flex flex-col justify-center gap-7 pt-2">
+                                            <div className="flex justify-center gap-7">
+                                                <Typography
+                                                    as="li"
+                                                    className="text-center"
+                                                >
+                                                    Blood Type: <span className="text-center text-gray-800 font-medium">{user?.bloodType}</span>
+                                                </Typography>
+                                                <Typography
+                                                    as="li"
+                                                    className="text-center"
+                                                >
+                                                    District: <span className="text-center text-gray-800 font-medium">{user?.district}</span>
+                                                </Typography>
+                                                <Typography
+                                                    as="li"
+                                                    className="text-center"
+                                                >
+                                                    Upazila: <span className="text-center text-gray-800 font-medium">{user?.upazila}</span>
+                                                </Typography>
+                                            </div>
+                                            <Button onClick={() => { handleOpen("md"); getUser(user) }} variant="gradient">
+                                                Send Message
+                                            </Button>
                                         </CardFooter>
                                     </Card>
                                 )
                             })
                         }
                     </div>
+                    <Dialog
+                        open={
+                            size === "xs" ||
+                            size === "sm" ||
+                            size === "md" ||
+                            size === "lg" ||
+                            size === "xl" ||
+                            size === "xxl"
+                        }
+                        size={size || "md"}
+                        handler={handleOpen}
+                    >
+
+                        <DialogHeader className="justify-center pt-6 text-3xl">Contact with {messageUser?.name}</DialogHeader>
+                        <form onSubmit={handleSendMessage}>
+                            <DialogBody>
+                                <div className="flex flex-col gap-6 px-6">
+                                    <Typography variant="h6" color="blue-gray" className="-mb-3">
+                                        Your Name
+                                    </Typography>
+                                    <Input
+                                        size="lg"
+                                        placeholder="Your Name"
+                                        className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                                        labelProps={{
+                                            className: "before:content-none after:content-none",
+                                        }}
+                                        defaultValue={user?.displayName}
+                                        disabled
+                                    />
+                                    <Typography variant="h6" color="blue-gray" className="-mb-3">
+                                        Your Email
+                                    </Typography>
+                                    <Input
+                                        type="email"
+                                        size="lg"
+                                        placeholder="name@mail.com"
+                                        className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                                        labelProps={{
+                                            className: "before:content-none after:content-none",
+                                        }}
+                                        defaultValue={user?.email}
+                                        disabled
+                                    />
+                                    <Typography variant="h6" color="blue-gray" className="-mb-3">
+                                        Your Phone
+                                    </Typography>
+                                    <Input
+                                        size="lg"
+                                        name="phone"
+                                        placeholder="+880555500001"
+                                        className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                                        labelProps={{
+                                            className: "before:content-none after:content-none",
+                                        }}
+                                    />
+                                    <Typography variant="h6" color="blue-gray" className="-mb-3">
+                                        Message
+                                    </Typography>
+                                    <Textarea
+                                        size="lg"
+                                        name="message"
+                                        placeholder="Message Here..."
+                                        className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                                        labelProps={{
+                                            className: "before:content-none after:content-none",
+                                        }}
+                                    />
+                                </div>
+                            </DialogBody>
+                            <DialogFooter>
+                                <Button
+                                    variant="text"
+                                    color="red"
+                                    onClick={() => handleOpen(null)}
+                                    className="mr-1"
+                                >
+                                    <span>Cancel</span>
+                                </Button>
+                                <Button
+                                    variant="gradient"
+                                    color="green"
+                                    type="submit"
+                                >
+                                    <span>Send</span>
+                                </Button>
+                            </DialogFooter>
+                        </form>
+                    </Dialog>
                 </div>
             </div>
         </div>
