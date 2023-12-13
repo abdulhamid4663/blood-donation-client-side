@@ -15,6 +15,7 @@ import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import useRole from '../../../hooks/useRole';
 import { Link } from 'react-router-dom';
+import parse from 'html-react-parser';
 
 const BlogCard = ({ blog, refetch }) => {
     const { user } = useAuth();
@@ -136,7 +137,7 @@ const BlogCard = ({ blog, refetch }) => {
                             {title}
                         </Typography>
                         <Typography variant="lead" color="gray" className="mt-3 font-normal">
-                            {content.length > 120 ? content.slice(0, 120) + "..." : content}
+                            {parse(content.length > 120 ? content.slice(0, 120) + "..." : content)}
                         </Typography>
                     </CardBody>
                     <CardFooter className="flex items-center justify-between">

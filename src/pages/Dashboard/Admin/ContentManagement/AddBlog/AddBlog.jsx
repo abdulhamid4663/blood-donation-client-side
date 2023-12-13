@@ -1,4 +1,4 @@
-import { Button, Input, Textarea, Typography } from "@material-tailwind/react";
+import { Button, Input, Typography } from "@material-tailwind/react";
 import { useRef, useState } from "react";
 import { imageUpload } from "../../../../../api/utils";
 import axiosSecure from "../../../../../api/axiosSecure";
@@ -6,13 +6,18 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
+import JoditEditor from 'jodit-react';
+import './AddBlog.css'
 
 const AddBlog = () => {
     const { user } = useAuth();
     const inputRef = useRef(null);
     const [image, setImage] = useState('');
     const navigate = useNavigate();
-
+    const editor = useRef(null);
+    const [content, setContent] = useState('');
+    const [contentValue, setContentValue] = useState('');
+    
     const handleOnClickImage = () => {
         inputRef.current.click()
     };
@@ -25,7 +30,7 @@ const AddBlog = () => {
         e.preventDefault();
         const form = e.target;
         const title = form.title.value;
-        const content = form.content.value;
+        const content = contentValue;
         const imageFile = image;
 
         try {
@@ -119,7 +124,13 @@ const AddBlog = () => {
                         <Typography variant="h6" color="blue-gray" className="mb-3 mt-6">
                             Blog Content
                         </Typography>
-                        <Textarea name="content" variant="standard" placeholder="Type here..." />
+                        <JoditEditor
+                            ref={editor}
+                            value={content}
+                            tabIndex={1} // tabIndex of textarea
+                            onBlur={newContent => setContentValue(newContent)} // preferred to use only this option to update the content for performance reasons
+                            onChange={newContent => setContent(newContent)}
+                        />
                         <div className="mt-6 flex items-center gap-4">
                             <Button type="submit" color="green">
                                 Add Blog

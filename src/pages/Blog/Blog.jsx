@@ -10,6 +10,7 @@ import {
     FacebookIcon,
     TwitterIcon,
 } from "react-share";
+import parse from 'html-react-parser';
 
 const Blog = () => {
     const [searchValue, setSearchValue] = useState('')
@@ -83,7 +84,7 @@ const Blog = () => {
                                                 color="blue-gray"
                                             >
 
-                                                {blog?.content}
+                                                {parse(blog?.content)}
                                             </Typography>
                                         </div>
                                         <Typography

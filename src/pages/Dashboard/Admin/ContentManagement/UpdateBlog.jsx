@@ -1,11 +1,12 @@
-import { Button, Input, Textarea, Typography } from "@material-tailwind/react";
-import { useRef, useState } from "react";
+import { Button, Input, Typography } from "@material-tailwind/react";
+import { useEffect, useRef, useState } from "react";
 import { imageUpload } from "../../../../api/utils";
 import axiosSecure from "../../../../api/axiosSecure";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../../../hooks/useAuth";
-import { useQuery } from "@tanstack/react-query";
+import JoditEditor from 'jodit-react';
+import './UpdateBlog.css'
 
 const UpdateBlog = () => {
     const { user } = useAuth();
@@ -13,14 +14,17 @@ const UpdateBlog = () => {
     const [image, setImage] = useState('');
     const navigate = useNavigate();
     const { id } = useParams();
-    
-    const { data: blog = {} } = useQuery({
-        queryKey: ['blog'],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/blogs/${id}`);
-            return data;
-        }
-    })
+    const [blog, setBlog] = useState({})
+
+    useEffect(() => {
+        axiosSecure.get(`/blogs/${id}`)
+            .then(data => setBlog(data.data))
+    }, [id])
+
+    const editor = useRef(null);
+    // const [content, setContent] = useState('');
+    const [contentValue, setContentValue] = useState('');
+
 
     const handleOnClickImage = () => {
         inputRef.current.click()
@@ -34,7 +38,7 @@ const UpdateBlog = () => {
         e.preventDefault();
         const form = e.target;
         const title = form.title.value;
-        const content = form.content.value;
+        const content = contentValue ? contentValue : blog?.content;
         const imageFile = image ? image : "";
         let imgBBData = null
 
@@ -120,7 +124,13 @@ const UpdateBlog = () => {
                         <Typography variant="h6" color="blue-gray" className="mb-3 mt-6">
                             Blog Content
                         </Typography>
-                        <Textarea defaultValue={blog?.content} name="content" variant="standard" placeholder="Type here..." />
+                        <JoditEditor
+                            ref={editor}
+                            value={blog.content}
+                            tabIndex={1}
+                            onBlur={newContent => setContentValue(newContent)}
+                        // onChange={newContent => setContent(newContent)}
+                        />
                         <div className="mt-6 flex items-center gap-4">
                             <Button type="submit" color="green">
                                 Update Blog

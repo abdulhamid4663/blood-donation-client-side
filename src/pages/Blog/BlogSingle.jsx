@@ -4,6 +4,7 @@ import axiosSecure from "../../api/axiosSecure";
 import { Typography } from "@material-tailwind/react";
 import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from "react-share";
 import { Helmet } from "react-helmet-async";
+import parse from 'html-react-parser';
 
 const BlogSingle = () => {
     const { id } = useParams()
@@ -70,7 +71,7 @@ const BlogSingle = () => {
                             color="blue-gray"
                         >
 
-                            {blog?.content}
+                            {parse(blog?.content)}
                         </Typography>
                     </div>
                     <Typography
